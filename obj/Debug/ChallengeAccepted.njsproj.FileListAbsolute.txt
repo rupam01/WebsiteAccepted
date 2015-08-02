@@ -1,0 +1,4 @@
+c:\users\zack\documents\visual studio 2015\Projects\ChallengeAccepted\ChallengeAccepted\obj\Debug\ChallengeAccepted.njsprojResolveAssemblyReference.cache
+c:\users\zack\documents\visual studio 2015\Projects\ChallengeAccepted\ChallengeAccepted\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\Zack\Documents\GitHub\WebsiteAccepted\obj\Debug\ChallengeAccepted.njsprojResolveAssemblyReference.cache
+C:\Users\Zack\Documents\GitHub\WebsiteAccepted\bin\Microsoft.NodejsTools.WebRole.dll

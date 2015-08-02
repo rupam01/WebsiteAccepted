@@ -1,0 +1,15 @@
+{
+  "name": "ChallengeAccepted",
+  "version": "0.0.0",
+  "description": "ChallengeAccepted",
+  "main": "app.js",
+  "author": {
+    "name": "Zack",
+    "email": ""
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "jade": "*",
+    "stylus": "*"
+  }
+}

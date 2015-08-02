@@ -1,5 +1,5 @@
 function index(req, res) {
-    res.render('index', { title: 'Express', year: new Date().getFullYear() });
+    res.render('index', { title: 'Challenge Accepted Course Website', year: new Date().getFullYear() });
 }
 exports.index = index;
 ;

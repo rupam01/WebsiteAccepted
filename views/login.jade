@@ -1,0 +1,26 @@
+﻿extends layout
+
+var message = #{message}
+
+block content
+  //h2 #{title}
+  //h3 #{message}
+
+  .row
+    .col-sm-6.col-sm-offset-3
+      h1 Login
+      -var hasMessage = message.length > 0;
+      if hasMessage
+        .alert.alert-danger #{message}
+
+      form(action='/login', method='post')
+        .form-group
+          label Email
+          input.form-control(type='text', name='email')
+        .form-group
+          label Password
+          input.form-control(type='password', name='password')
+        button.btn.btn-warning-btn-lg(type='submit') Login
+      hr
+      p Need an account? #[a(href='/signup') Sign Up]
+    br

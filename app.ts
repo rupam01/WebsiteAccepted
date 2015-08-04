@@ -1,21 +1,21 @@
 ﻿import express = require('express');
-import routes = require('./routes/index');
+import routes = require('./routes/routes');
 import http = require('http');
 import path = require('path');
-var database = require('./config/database.js');
 
 var passport = require('passport');
 var flash = require('connect-flash');
 
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
+//var session = require('express-session');
+var mongoose = require('mongoose');
 var app = express();
-//import passport = require('passport-google-oauth');
 
+//import passport = require('passport-google-oauth');
+mongoose.connect('mongodb://localhost:27017');
 app.use(cookieParser());
 app.use(bodyParser());
-
 
 var port = 3000;
 
@@ -39,17 +39,18 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
+require('./config/passport')(passport); // pass passport for configuration
 
+//app.use(session({ secret: 'imnotexactlysurewhatthisissupposedtobe' }));
 
+app.use(express.session({ secret: 'imnotexactlysurewhatthisissupposedtobe' }));
 
-
-
-// require('./config/passport')(passport); // pass passport for configuration
-
-app.use(session({ secret: 'imnotexactlysurewhatthisissupposedtobe' }));
+var f = flash();
+console.log(f);
+//app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
+app.use(f);
 
 require('./routes/routes.js')(app, passport);
 
@@ -60,46 +61,3 @@ server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
 
-//con.query('CALL sp_getall()', function (err, rows) {
-//    if (err) throw err;
-//    console.log('Data received from Db:\n');
-//    console.log(rows);
-//});
-//con.end(function (err) {
-//    //connection end
-//    console.log('Connection closed');
-//});
-
-
-
-//var ii;
-//var s1 = { firstname: "tester", lastname: "mcTest", email: "te@s.t" };
-//con.query('INSERT INTO students SET ?', s1, function (err, res) {
-//    if (err) throw err;
-//    console.log('Last ID inserted:', res.insertId);
-//    ii = res.insertId;
-//    con.query('UPDATE students SET bio = ? WHERE id = ?',
-//        ["Testicles. Tried and Tested.", ii - 5],
-//        (err, result) => {
-//            if (err) throw err;
-//            console.log('Changed ', result.changedRows + ' rows');
-//            con.query(
-//                'DELETE FROM students WHERE id = ?',
-//                [5],
-//                function (err, result) {
-//                    if (err) throw err;
-//
-//                    console.log('Deleted ' + result.affectedRows + ' rows');
-//                    con.end(function (err) {
-//                        //connection end
-//                        console.log('Connection closed');
-//                    });
-//                });
-//        });
-//    
-//});
-//con.query('SELECT * FROM students', function (err, rows) {
-//    if (err) throw err;
-//    console.log('Data received from Database:\n');
-//    console.log(rows);
-//});

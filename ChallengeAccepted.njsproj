@@ -35,14 +35,15 @@
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="config\passport.ts" />
-    <TypeScriptCompile Include="models\users.ts" />
+    <TypeScriptCompile Include="models\user.ts" />
     <TypeScriptCompile Include="routes\routes.ts" />
-    <TypeScriptCompile Include="routes\index.ts" />
+    <TypeScriptCompile Include="typings\connect-flash\connect-flash.d.ts" />
     <TypeScriptCompile Include="typings\express\express.d.ts" />
-    <TypeScriptCompile Include="typings\mysql\mysql.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
     <TypeScriptCompile Include="typings\lodash\lodash.d.ts" />
-    <TypeScriptCompile Include="typings\sequelize\sequelize.d.ts" />
+    <TypeScriptCompile Include="typings\passport\passport-google-oauth.d.ts" />
+    <TypeScriptCompile Include="typings\passport\passport-local.d.ts" />
+    <TypeScriptCompile Include="typings\passport\passport.d.ts" />
     <TypeScriptCompile Include="typings\stylus\stylus.d.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +76,7 @@
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="views\login.jade" />
+    <Content Include="views\profile.jade" />
     <Content Include="views\signup.jade" />
   </ItemGroup>
   <ItemGroup>
@@ -88,9 +90,9 @@
     <Folder Include="routes\" />
     <Folder Include="typings\" />
     <Folder Include="typings\express\" />
-    <Folder Include="typings\mysql\" />
     <Folder Include="typings\lodash\" />
-    <Folder Include="typings\sequelize\" />
+    <Folder Include="typings\connect-flash\" />
+    <Folder Include="typings\passport\" />
     <Folder Include="typings\node\" />
     <Folder Include="typings\stylus\" />
     <Folder Include="views\" />

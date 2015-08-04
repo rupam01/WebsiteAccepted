@@ -1,8 +1,9 @@
-// config/passport.js
-// load all the things we need
+/// <reference path="../typings/express/express.d.ts"/>
+/// <reference path="../typings/passport/passport.d.ts"/>
+/// <reference path="../typings/connect-flash/connect-flash.d.ts"/>
 var LocalStrategy = require('passport-local').Strategy;
 // load up the user model
-var User = require('../app/models/user');
+var User = require('../models/user');
 // expose this function to our app using module.exports
 module.exports = function (passport) {
     // =========================================================================
@@ -59,6 +60,42 @@ module.exports = function (passport) {
                     });
                 }
             });
+        });
+    }));
+    // =========================================================================
+    // LOCAL LOGIN =============================================================
+    // =========================================================================
+    // we are using named strategies since we have one for login and one for signup
+    // by default, if there was no name, it would just be called 'local'
+    passport.use('local-login', new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true // allows us to pass back the entire request to the callback
+    }, function (req, email, password, done) {
+        console.log('before rolling one');
+        // find a user whose email is the same as the forms email
+        // we are checking to see if the user trying to login already exists
+        User.findOne({ 'local.email': email }, function (err, user) {
+            console.log('before toking one');
+            // if there are any errors, return the error before anything else
+            if (err) {
+                console.log('before rolling one');
+                return done(err);
+            }
+            // if no user is found, return the message
+            if (!user) {
+                console.log('no user found I tried');
+                return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+            }
+            // if the user is found but the password is wrong
+            if (!user.validPassword(password)) {
+                console.log('wrong password no hacks pleeeeex (I tried)');
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+            }
+            console.log('cause its hard being nodejs and gifted');
+            // all is well, return successful user
+            return done(null, user);
         });
     }));
 };

@@ -34,7 +34,8 @@ html
       block content
       hr
       footer
-        p &copy; #{year} - Challenge Accepted Course Website
+        - var year2 = new Date().getFullYear();
+        p &copy; #{year2} - Challenge Accepted Course Website
 
     script(src='/javascripts/jquery-1.10.2.js')
     script(src='/javascripts/bootstrap.js')

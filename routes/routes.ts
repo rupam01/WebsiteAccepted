@@ -3,8 +3,9 @@ import express = require('express');
 var session = require('express-session');
 // app/routes.js
 module.exports = function (app, passport) {
-
-    app.get('/', function (req: Express.Request, res: express.Response) {
+    app.get('/', function (req, res) {
+        req.flash('info', 'Flash is back!');
+        console.log(req.flash('info'));
         res.render('index', { title: 'Challenge Accepted Course Website' });
     });
     app.get('/about', function (req: Express.Request, res: express.Response) {

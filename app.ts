@@ -1,20 +1,26 @@
-﻿import express = require('express');
+﻿import http = require('http');
+import express = require('express');
 import routes = require('./routes/routes');
-import http = require('http');
 import path = require('path');
+
+
+
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var methodOverride = require('method-override');
+var session = require('express-session');
 
 var passport = require('passport');
 var flash = require('connect-flash');
 
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-//var session = require('express-session');
 var mongoose = require('mongoose');
 var app = express();
 
 //import passport = require('passport-google-oauth');
 mongoose.connect('mongodb://localhost:27017');
-app.use(cookieParser());
+app.use(cookieParser('imnotexactlysurewhatthisissupposedtobe'));
 app.use(bodyParser());
 
 var port = 3000;
@@ -41,9 +47,9 @@ if ('development' == app.get('env')) {
 
 require('./config/passport')(passport); // pass passport for configuration
 
-//app.use(session({ secret: 'imnotexactlysurewhatthisissupposedtobe' }));
+app.use(session({ secret: 'imnotexactlysurewhatthisissupposedtobe' }));
 
-app.use(express.session({ secret: 'imnotexactlysurewhatthisissupposedtobe' }));
+//app.use(express.session({ secret: 'imnotexactlysurewhatthisissupposedtobe' }));
 
 var f = flash();
 console.log(f);
@@ -52,7 +58,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(f);
 
-require('./routes/routes.js')(app, passport);
+//require('./routes/routes.js')(app, passport);
+//routes(app, passport);
 
 
 var server = http.createServer(app);
@@ -60,4 +67,7 @@ var server = http.createServer(app);
 server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+
 

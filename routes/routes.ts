@@ -12,11 +12,11 @@ module.exports = function (app, passport) {
     });
     router.get('/about', function (req, res) {
         console.log('about');
-        res.render('about', { title: 'About', message: 'Your application description page' });
+        res.render('about', { title: 'About', message: 'The Challenge Accepted Course' });
     });
     router.get('/contact', function (req: Express.Request, res: express.Response) {
         console.log('contact');
-        res.render('contact', { title: 'Contact', message: 'Your contact page' });
+        res.render('contact', { title: 'Contact Information', message: 'Feel free to contact us:' });
     });
     router.get('/login', function (req: Express.Request, res: express.Response) {
         console.log('login');
@@ -30,10 +30,14 @@ module.exports = function (app, passport) {
         console.log('profile');
         res.render('profile', { title: 'Profile', user: req.user });
     });
+    router.get('/lectures', function (req, res) {
+        console.log('lectures');
+        res.render('lectures', { title: 'Lecture Notes', user: req.user });
+    });
     // =====================================
     // LOGOUT ==============================
     // =====================================
-    app.get('/logout', function (req, res) {
+    router.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
     });
@@ -74,6 +78,25 @@ module.exports = function (app, passport) {
         req.logout();
         res.redirect('/');
     });
+
+
+    // =====================================
+    // GOOGLE ROUTES =======================
+    // =====================================
+    // send to google to do the authentication
+    // profile gets us their basic information including their name
+    // email gets their emails
+    router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+    // the callback after google has authenticated the user
+    router.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/profile',
+            failureRedirect: '/'
+        }));
+
+
+
     return router;
 };
 

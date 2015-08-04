@@ -76,7 +76,28 @@ app.use(function (req, res, next) {
 
 app.use('/', routes(app, passport));
 
+app.get('/slides_lecture1', function (req, res, next) {
+    //var file = req.params.file
+    var file = 'Lesson1.pptx';
+    var path = __dirname + '/files/' + file;
+    res.download(path);
+});
 
+// error handling middleware. Because it's
+// below our routes, you will be able to
+// "intercept" errors, otherwise Connect
+// will respond with 500 "Internal Server Error".
+//app.use(function (err, req, res, next) {
+//    // special-case 404s,
+//    // remember you could
+//    // render a 404 template here
+//    if (404 == err.status) {
+//        res.statusCode = 404;
+//        res.send('Cant find that file, sorry!');
+//    } else {
+//        next(err);
+//    }
+//});
 
 //app.get('/t1', function (req, res) {
 //    req.flash('test', 'it worked');

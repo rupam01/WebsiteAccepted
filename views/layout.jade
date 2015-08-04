@@ -28,21 +28,24 @@ html
               a(href='/contact') Contact
             if login
               li
+                a(href='/logout') Log Out
+              li
                 a(href='/profile') Profile
               li
-                a(href='/logout') Log Out
+                a(href='/lectures') Lecture Notes
             else
               li
-                a(href='/signup') Sign Up
-              li
                 a(href='/login') Log In
+              //li
+              //  a(href='/signup') Sign Up
+              
             
     .container.body-content
       block content
       hr
       footer
         - var year2 = new Date().getFullYear();
-        p &copy; #{year2} - Challenge Accepted Course Website
+        p &copy; #{year2} - Challenge Accepted Course Website - Ryerson University
 
     script(src='/javascripts/jquery-1.10.2.js')
     script(src='/javascripts/bootstrap.js')

@@ -1,17 +1,39 @@
 ﻿extends layout
 
+
+//GOOGLE INFORMATION
 block content
+
   .row
-      .col-sm-6
-          .well
-            
-            h3
-              span.fa.fa-user Profile
-            p
-              //strong id : #{user._id}
-              br     
-              strong Email : #{user.local.email}
-              br      
-              //strong password : #{user.local.password}
-            br
-            a.btn.btn-default.btn-sm(href="/logout") Logout
+    .col-sm-6
+      .well
+        h3.text-danger
+          span.fa.fa-google-plus
+          |  Google
+        |                     
+        p
+          //strong id : #{user.google.id}
+          //br
+          //strong token : #{user.google.token}
+          //br
+          strong email : #{user.google.email}
+          br
+          strong name : #{user.google.name}
+          br
+          br
+          a.btn.btn-default.btn-sm(href="/logout") Logout
+
+  //.row
+  //    .col-sm-6
+  //        .well
+  //          
+  //          h3
+  //            span.fa.fa-user Profile
+  //          p
+  //            //strong id : #{user._id}
+  //            br     
+  //            strong Email : #{user.local.email}
+  //            br      
+  //            //strong password : #{user.local.password}
+  //          br
+  //          a.btn.btn-default.btn-sm(href="/logout") Logout

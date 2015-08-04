@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="config\auth.ts" />
     <TypeScriptCompile Include="config\passport.ts" />
     <TypeScriptCompile Include="models\user.ts" />
     <TypeScriptCompile Include="routes\routes.ts" />
@@ -49,6 +50,7 @@
     <TypeScriptCompile Include="typings\stylus\stylus.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="files\Lesson1.pptx" />
     <Content Include="public\javascripts\bootstrap.js" />
     <Content Include="public\javascripts\bootstrap.min.js" />
     <Content Include="public\javascripts\jquery-1.10.2.intellisense.js" />
@@ -73,6 +75,7 @@
     <Content Include="public\stylesheets\bootstrap.min.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
+    <Content Include="views\lectures.jade" />
     <Content Include="views\syllabus.jade" />
     <Content Include="views\contact.jade" />
     <Content Include="views\about.jade" />
@@ -85,6 +88,7 @@
   <ItemGroup>
     <Folder Include="config\" />
     <Folder Include="models\" />
+    <Folder Include="files\" />
     <Folder Include="public\" />
     <Folder Include="public\fonts\" />
     <Folder Include="public\images\" />

@@ -25,7 +25,8 @@ app.use(cookieParser('imnotexactlysurewhatthisissupposedtobe')); //3
 //app.use(bodyParser());
 //app.use(bodyParser.json);
 
-var port = 3000;
+//var port = 3000;
+var port = 80;
 
 // all environments
 app.set('port', ""+port); //process.env.PORT || 

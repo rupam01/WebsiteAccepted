@@ -62,6 +62,12 @@ app.get('/slides_lecture1', function (req, res, next) {
     var path = __dirname + '/files/' + file;
     res.download(path);
 });
+app.get('/syllabus', function (req, res, next) {
+    //var file = req.params.file
+    var file = 'Syllabus.pdf';
+    var path = __dirname + '/files/' + file;
+    res.download(path);
+});
 // error handling middleware. Because it's
 // below our routes, you will be able to
 // "intercept" errors, otherwise Connect

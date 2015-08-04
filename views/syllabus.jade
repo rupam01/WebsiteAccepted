@@ -1,0 +1,21 @@
+extends layout
+
+mixin email(address)
+  a(href=address) #{address}
+
+block content
+  .row
+    h1 #{title}
+    br
+    h2 Introduction to App Development
+    h3 Ryerson University
+    h4 Student Learning Centre
+  .row
+    .col-md-4
+      h4 Instructor:
+      p Alireza Sadheighan
+      p #[+email('gupta@ryerson.ca')]
+      
+      h4 Workshop	Coordinator:
+      p Arjun	Gupta
+      p #[+email('asadeghi@ryerson.ca')]

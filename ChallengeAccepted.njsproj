@@ -39,11 +39,13 @@
     <TypeScriptCompile Include="routes\routes.ts" />
     <TypeScriptCompile Include="typings\connect-flash\connect-flash.d.ts" />
     <TypeScriptCompile Include="typings\express\express.d.ts" />
+    <TypeScriptCompile Include="typings\mime\mime.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
     <TypeScriptCompile Include="typings\lodash\lodash.d.ts" />
     <TypeScriptCompile Include="typings\passport\passport-google-oauth.d.ts" />
     <TypeScriptCompile Include="typings\passport\passport-local.d.ts" />
     <TypeScriptCompile Include="typings\passport\passport.d.ts" />
+    <TypeScriptCompile Include="typings\serve-static\serve-static.d.ts" />
     <TypeScriptCompile Include="typings\stylus\stylus.d.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +95,8 @@
     <Folder Include="typings\express\" />
     <Folder Include="typings\lodash\" />
     <Folder Include="typings\connect-flash\" />
+    <Folder Include="typings\mime\" />
+    <Folder Include="typings\serve-static\" />
     <Folder Include="typings\passport\" />
     <Folder Include="typings\node\" />
     <Folder Include="typings\stylus\" />

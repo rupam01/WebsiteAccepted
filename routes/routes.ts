@@ -1,53 +1,67 @@
 ﻿/// <reference path="../typings/connect-flash/connect-flash.d.ts" />
 import express = require('express');
-var session = require('express-session');
+//var session = require('express-session');
 // app/routes.js
 module.exports = function (app, passport) {
-    app.get('/', function (req, res) {
-        req.flash('info', 'Flash is back!');
-        console.log(req.flash('info'));
+    var router = express.Router();
+    router.get('/', function (req, res) {
+        //req.flash('info', 'Flash is back!');
+        //console.log(req.flash('info'));
+        console.log('home');
         res.render('index', { title: 'Challenge Accepted Course Website' });
     });
-    app.get('/about', function (req: Express.Request, res: express.Response) {
+    router.get('/about', function (req, res) {
+        console.log('about');
         res.render('about', { title: 'About', message: 'Your application description page' });
     });
-    app.get('/contact', function (req: Express.Request, res: express.Response) {
+    router.get('/contact', function (req: Express.Request, res: express.Response) {
+        console.log('contact');
         res.render('contact', { title: 'Contact', message: 'Your contact page' });
     });
-    app.get('/login', function (req: Express.Request, res: express.Response) {
-        res.render('login', { title: 'Log In', message: req.flash ? req.flash('signupMessage') : "noflash" });
+    router.get('/login', function (req: Express.Request, res: express.Response) {
+        console.log('login');
+        res.render('login', { title: 'Log In', message: req.flash ? req.flash('loginMessage') : "noflash" });
     });
-    app.get('/signup', function (req: Express.Request, res: express.Response) {
+    router.get('/signup', function (req: Express.Request, res: express.Response) {
+        console.log('signup');
         res.render('signup', { title: 'Sign Up', message: req.flash ? req.flash('signupMessage') : "noflash" });
+    });
+    router.get('/profile', function (req, res) {
+        console.log('profile');
+        res.render('profile', { title: 'Profile', user: req.user });
+    });
+    // =====================================
+    // LOGOUT ==============================
+    // =====================================
+    app.get('/logout', function (req, res) {
+        req.logout();
+        res.redirect('/');
     });
     
 
     // process the login form
-    app.post('/login', function () {
-        console.log("PRINTOUT: login post.");
-        return passport.authenticate('local-login', {
+    router.post('/login', passport.authenticate('local-login', {
             successRedirect: '/profile', // redirect to the secure profile section
             failureRedirect: '/login', // redirect back to the signup page if there is an error
             failureFlash: true // allow flash messages
         })
-    }());
+    );
     
     // process the signup form
-    app.post('/signup', function () {
-        console.log("PRINTOUT: signup post.");
-        return passport.authenticate('local-signup', {
+    router.post('/signup', passport.authenticate('local-signup', {
             successRedirect: '/profile', // redirect to the secure profile section
             failureRedirect: '/signup', // redirect back to the signup page if there is an error
             failureFlash: true // allow flash messages
         })
-    } ());
+    );
 
     // =====================================
     // PROFILE SECTION =====================
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function (req, res) {
+    router.get('/profile', isLoggedIn, function (req, res) {
+        //console.log("user:" + req.user);
         res.render('profile', {
             user: req.user // get the user out of session and pass to template
         });
@@ -56,10 +70,11 @@ module.exports = function (app, passport) {
     // =====================================
     // LOGOUT ==============================
     // =====================================
-    app.get('/logout', function (req, res) {
+    router.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
     });
+    return router;
 };
 
 // route middleware to make sure a user is logged in

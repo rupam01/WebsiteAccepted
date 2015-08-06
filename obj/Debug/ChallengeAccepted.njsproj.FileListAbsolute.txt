@@ -2,3 +2,4 @@ c:\users\zack\documents\visual studio 2015\Projects\ChallengeAccepted\ChallengeA
 c:\users\zack\documents\visual studio 2015\Projects\ChallengeAccepted\ChallengeAccepted\bin\Microsoft.NodejsTools.WebRole.dll
 C:\Users\Zack\Documents\GitHub\WebsiteAccepted\obj\Debug\ChallengeAccepted.njsprojResolveAssemblyReference.cache
 C:\Users\Zack\Documents\GitHub\WebsiteAccepted\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\ZackLapt\Documents\GitHubVisualStudio\WebsiteAccepted\obj\Debug\ChallengeAccepted.njsprojResolveAssemblyReference.cache

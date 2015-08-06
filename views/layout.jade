@@ -4,7 +4,7 @@ html
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title #{title}
-    // - Challenge Accepted Course Website
+    // - Challenge Accepted Workshop Website
     //link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
@@ -17,7 +17,7 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='/') Challenge Accepted Course Website
+          a.navbar-brand(href='/') Challenge Accepted Workshop Website
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li
@@ -45,7 +45,11 @@ html
       hr
       footer
         - var year2 = new Date().getFullYear();
-        p &copy; #{year2} - Challenge Accepted Course Website - Ryerson University
+        p &copy; #{year2} - Challenge Accepted Workshop Website - Ryerson University
+        br
+        //a(href='/')
+        //  img(scr='/')
+
 
     script(src='/javascripts/jquery-1.10.2.js')
     script(src='/javascripts/bootstrap.js')

@@ -65,7 +65,7 @@ app.get('/slides_lecture1', function (req, res, next) {
 });
 app.get('/syllabus', function (req, res, next) {
     //var file = req.params.file
-    var file = 'Syllabus.pdf';
+    var file = 'syllabus2.pdf';
     var path = __dirname + '/files/' + file;
     res.download(path);
 });

@@ -8,11 +8,11 @@ module.exports = function (app, passport) {
         //req.flash('info', 'Flash is back!');
         //console.log(req.flash('info'));
         console.log('home');
-        res.render('index', { title: 'Challenge Accepted Course Website' });
+        res.render('index', { title: 'Challenge Accepted Workshop Website' });
     });
     router.get('/about', function (req, res) {
         console.log('about');
-        res.render('about', { title: 'About', message: 'The Challenge Accepted Course' });
+        res.render('about', { title: 'About', message: 'The Challenge Accepted Workshop' });
     });
     router.get('/contact', function (req: Express.Request, res: express.Response) {
         console.log('contact');

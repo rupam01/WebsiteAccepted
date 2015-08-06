@@ -53,6 +53,9 @@
     <Content Include="files\Lesson1.pptx" />
     <Content Include="files\Syllabus.pdf" />
     <Content Include="files\syllabus2.pdf" />
+    <Content Include="public\images\brookfield_watermark.png" />
+    <Content Include="public\images\logo_lz_stacked.png" />
+    <Content Include="public\images\ru_logo.jpg" />
     <Content Include="public\javascripts\bootstrap.js" />
     <Content Include="public\javascripts\bootstrap.min.js" />
     <Content Include="public\javascripts\jquery-1.10.2.intellisense.js" />
@@ -93,8 +96,8 @@
     <Folder Include="files\" />
     <Folder Include="public\" />
     <Folder Include="public\fonts\" />
-    <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
+    <Folder Include="public\images\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="typings\" />

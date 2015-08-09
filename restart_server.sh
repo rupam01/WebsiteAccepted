@@ -10,5 +10,9 @@ then
   exec sudo /usr/local/bin/node /home/zharris/website/app.js  >> /home/zharris/node.log 2>&1
   echo "\$ Server done"
 else
+  exec sudo kill $CHECK
   echo "\$Server is already running!."
+  echo "\$ Starting Server"
+  exec sudo /usr/local/bin/node /home/zharris/website/app.js  >> /home/zharris/node.log 2>&1
+  echo "\$ Server done"
 fi     # $String is null.

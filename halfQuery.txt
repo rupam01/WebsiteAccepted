@@ -1,0 +1,5 @@
+﻿{
+    "title": "IntroEvents",
+    "description": "The first lecture focusing on introducing App Inventor, the Designer and Blocks view, as well as Events and Properties."
+    "delivery_date": "2015-08-04T11:04:15.270Z"
+}

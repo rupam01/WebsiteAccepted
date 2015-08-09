@@ -13,7 +13,7 @@ function routes(app) {
     });
     router.get('/about', function (req, res) {
         console.log('about');
-        res.render('about', { title: 'About...', message: 'The Challenge Accepted Workshop : ' + req.user.google.datecreated });
+        res.render('about', { title: 'About...', message: 'The Challenge Accepted Workshop' });
     });
     router.get('/contact', function (req, res) {
         console.log('contact');
@@ -35,20 +35,33 @@ function routes(app) {
         console.log('lectures');
         res.render('lectures', { title: 'Lecture Notes', user: req.user });
     });
-    router.post('/lectures/:id', function (req, res) {
-        console.log("BODY:" + JSON.stringify(req.body));
+    router.post('/lectures/:lecture_num', function (req, res) {
         var inputlect = req.body;
-        var lect = new Lecture();
-        for (var x in inputlect) {
-            if (lect.hasOwnProperty(x)) {
-                console.log("had property :" + x);
-                lect[x] = inputlect[x];
+        Lecture.findOne({ lecture_num: req.params.lecture_num }, function (err, lect) {
+            if (err || !lect)
+                lect = new Lecture();
+            var sch = Lecture.schema;
+            var paths = sch.paths;
+            for (var x in inputlect) {
+                if (paths.hasOwnProperty(x)) {
+                    console.log("had property :" + x);
+                    lect[x] = inputlect[x];
+                }
+                else {
+                    console.log("didn't have property :" + x);
+                }
             }
-            else {
-                console.log("didn't have property :" + x);
-            }
-        }
-        //req.params.id
+            lect.lecture_num = req.params.lecture_num;
+            lect.save(function (err) {
+                if (err) {
+                    console.log("ERROR: " + err);
+                    throw err;
+                }
+                console.log("wrote to db");
+            });
+            res.status(200);
+            res.end();
+        });
     });
     // =====================================
     // LOGOUT ==============================

@@ -3,7 +3,6 @@ var bcrypt = require('bcrypt-nodejs');
 
 // define the schema for our user model
 var lectureSchema = new mongoose.Schema({
-    token: String,
     lecture_num: Number,
     title: String,
     description: String,
@@ -16,7 +15,6 @@ var lectureSchema = new mongoose.Schema({
 });
 
 interface ILecture extends mongoose.Document {
-    token: string,
     lecture_num: number,
     title: string,
     description: string,

@@ -149,7 +149,7 @@ var execConfig = function () {
                         newUser.google.name = profile.displayName;
                         newUser.google.email = profile.emails[0].value; // pull the first email
                         newUser.google.datecreated = new Date();
-
+                        
                         // save the user
                         newUser.save(function (err) {
                             if (err)

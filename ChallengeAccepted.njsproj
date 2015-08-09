@@ -62,6 +62,7 @@
     <Content Include="files\Lesson1.pptx" />
     <Content Include="files\Syllabus.pdf" />
     <Content Include="files\syllabus2.pdf" />
+    <Content Include="halfQuery.txt" />
     <Content Include="public\images\brookfield_watermark.png" />
     <Content Include="public\images\logo_lz_stacked.png" />
     <Content Include="public\images\ru_logo.jpg" />

@@ -27,3 +27,4 @@ build/Release
 node_modules
 /.ntvs_analysis.dat
 .vs/ChallengeAccepted/v14/.suo
+/.ntvs_analysis.dat.tmp

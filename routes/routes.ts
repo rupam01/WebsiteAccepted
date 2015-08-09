@@ -14,7 +14,7 @@ export function routes(app:express.Express) : express.Router{
     });
     router.get('/about', function (req, res) {
         console.log('about');
-        res.render('about', { title: 'About...', message: 'The Challenge Accepted Workshop : ' + req.user.google.datecreated });
+        res.render('about', { title: 'About...', message: 'The Challenge Accepted Workshop');
     });
     router.get('/contact', function (req: express.Request, res: express.Response) {
         console.log('contact');
@@ -36,20 +36,37 @@ export function routes(app:express.Express) : express.Router{
         console.log('lectures');
         res.render('lectures', { title: 'Lecture Notes', user: req.user });
     });
-    router.post('/lectures/:id', (req, res) => {
-        var inputlect = JSON.parse(req.body);
-        var lect = new Lecture();
-        for (var x in inputlect) {
-            if (lect.hasOwnProperty(x)) {
-                console.log("had property :" + x);
-                lect[x] = inputlect[x];
-            }
-            else {
-                console.log("didn't have property :" + x);
-            }
-        }
+    router.post('/lectures/:lecture_num', (req, res) => {
+        var inputlect = req.body;
+        Lecture.findOne({ lecture_num: req.params.lecture_num }, function (err, lect) {
+            if (err || !lect) lect = new Lecture();
 
-        //req.params.id
+            var sch: any = Lecture.schema;
+            var paths = sch.paths;
+
+            for (var x in inputlect) {
+                if (paths.hasOwnProperty(x)) {
+                    console.log("had property :" + x);
+                    lect[x] = inputlect[x];
+                }
+                else {
+                    console.log("didn't have property :" + x);
+                }
+            }
+            lect.lecture_num = req.params.lecture_num;
+
+            lect.save(function (err) {
+                if (err) {
+                    console.log("ERROR: " + err);
+                    throw err;
+                }
+                console.log("wrote to db");
+            });
+        
+            res.status(200);
+            res.end();
+        });
+        
 
     });
     // =====================================

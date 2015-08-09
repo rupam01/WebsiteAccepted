@@ -37,15 +37,23 @@
     <TypeScriptCompile Include="config\auth.ts" />
     <TypeScriptCompile Include="config\passport.ts" />
     <TypeScriptCompile Include="models\user.ts" />
+    <TypeScriptCompile Include="procs\githook.ts" />
     <TypeScriptCompile Include="routes\routes.ts" />
+    <TypeScriptCompile Include="typings\body-parser\body-parser.d.ts" />
     <TypeScriptCompile Include="typings\connect-flash\connect-flash.d.ts" />
+    <TypeScriptCompile Include="typings\cookie-parser\cookie-parser.d.ts" />
+    <TypeScriptCompile Include="typings\errorhandler\errorhandler.d.ts" />
+    <TypeScriptCompile Include="typings\express-session\express-session.d.ts" />
     <TypeScriptCompile Include="typings\express\express.d.ts" />
     <TypeScriptCompile Include="typings\mime\mime.d.ts" />
+    <TypeScriptCompile Include="typings\mongoose\mongoose.d.ts" />
+    <TypeScriptCompile Include="typings\morgan\morgan.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
     <TypeScriptCompile Include="typings\lodash\lodash.d.ts" />
     <TypeScriptCompile Include="typings\passport\passport-google-oauth.d.ts" />
     <TypeScriptCompile Include="typings\passport\passport-local.d.ts" />
     <TypeScriptCompile Include="typings\passport\passport.d.ts" />
+    <TypeScriptCompile Include="typings\serve-favicon\serve-favicon.d.ts" />
     <TypeScriptCompile Include="typings\serve-static\serve-static.d.ts" />
     <TypeScriptCompile Include="typings\stylus\stylus.d.ts" />
   </ItemGroup>
@@ -80,6 +88,7 @@
     <Content Include="public\stylesheets\bootstrap.min.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
+    <Content Include="restart_server.sh" />
     <Content Include="views\lectures.jade" />
     <Content Include="views\syllabus.jade" />
     <Content Include="views\contact.jade" />
@@ -94,6 +103,7 @@
     <Folder Include="config\" />
     <Folder Include="models\" />
     <Folder Include="files\" />
+    <Folder Include="procs\" />
     <Folder Include="public\" />
     <Folder Include="public\fonts\" />
     <Folder Include="public\javascripts\" />
@@ -101,10 +111,17 @@
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="typings\" />
+    <Folder Include="typings\body-parser\" />
+    <Folder Include="typings\cookie-parser\" />
+    <Folder Include="typings\errorhandler\" />
+    <Folder Include="typings\express-session\" />
     <Folder Include="typings\express\" />
     <Folder Include="typings\lodash\" />
     <Folder Include="typings\connect-flash\" />
     <Folder Include="typings\mime\" />
+    <Folder Include="typings\mongoose\" />
+    <Folder Include="typings\morgan\" />
+    <Folder Include="typings\serve-favicon\" />
     <Folder Include="typings\serve-static\" />
     <Folder Include="typings\passport\" />
     <Folder Include="typings\node\" />

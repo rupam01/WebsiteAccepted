@@ -3,3 +3,7 @@ c:\users\zack\documents\visual studio 2015\Projects\ChallengeAccepted\ChallengeA
 C:\Users\Zack\Documents\GitHub\WebsiteAccepted\obj\Debug\ChallengeAccepted.njsprojResolveAssemblyReference.cache
 C:\Users\Zack\Documents\GitHub\WebsiteAccepted\bin\Microsoft.NodejsTools.WebRole.dll
 C:\Users\ZackLapt\Documents\GitHubVisualStudio\WebsiteAccepted\obj\Debug\ChallengeAccepted.njsprojResolveAssemblyReference.cache
+C:\Users\MHDante\Documents\GitHub\WebsiteAccepted\obj\Debug\ChallengeAccepted.njsprojResolveAssemblyReference.cache
+C:\Users\MHDante\Documents\GitHub\WebsiteAccepted\bin\Microsoft.NodejsTools.WebRole.dll
+C:\WA\obj\Debug\ChallengeAccepted.njsprojResolveAssemblyReference.cache
+C:\WA\bin\Microsoft.NodejsTools.WebRole.dll

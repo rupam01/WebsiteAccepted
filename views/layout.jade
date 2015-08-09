@@ -8,20 +8,22 @@ html
     //link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    link(href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel='stylesheet' type='text/css')
     script(src='/javascripts/modernizr-2.6.2.js')
   body
-    .navbar.navbar-inverse.navbar-fixed-top
+    .navbar.navbar-default.navbar-fixed-top
       .container
         .navbar-header
           button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='/') Challenge Accepted Workshop Website
+          a.navbar-brand
+            img.logo(src="/images/logo.png" alt="Challenge Accepted" href='/' style="width: 200px;")
         .navbar-collapse.collapse
-          ul.nav.navbar-nav
+          ul.nav.navbar-nav.navbar-right
             li
-              a(href='/') Home
+              a(href='https://mydmz.ryerson.ca/learntocode/') Promo Site
             li
               a(href='/about') About
             li
@@ -36,27 +38,31 @@ html
             else
               li
                 a(href='/login') Log In
-              //li
-              //  a(href='/signup') Sign Up
+            li
+              a.ai2(href="http://ai2.appinventor.mit.edu/", target='_blank' style='background:#FF8800')
+                | App Inventor
+
               
             
     .container.body-content
       block content
       hr
-      footer
-        - var year2 = new Date().getFullYear();
-        p &copy; #{year2} - Challenge Accepted Workshop Website - Ryerson University
-        br
-        .row(style='background-color: rgb(85, 85, 85); padding:20px;')
-          .col-md-4
-            a(href='http://www.ryerson.ca/')
-              img(src='/images/ru_logo.jpg', style='width:100%; margin:10px;')
-          .col-md-4
-            a(href='http://launchzone.ryerson.ca/')
-              img(src='/images/logo_lz_stacked.png', style='width:100%; margin:10px;')
-          .col-md-4
-            a(href='http://brookfieldinstitute.ca/')
-              img(src='/images/brookfield_watermark.png', style='width:100%; margin:10px;')
+    footer.text-center(style='background-color: rgb(85, 85, 85); padding:20px;')
+      - var year2 = new Date().getFullYear();
+      .footer-above
+        .container
+          h3 &copy; #{year2} - Challenge Accepted - Ryerson University
+          br
+          .footer-col
+            .col-sm-4
+              a(href='http://www.ryerson.ca/')
+                img.logo-bottom(src='/images/ru_logo.jpg')
+            .col-sm-4
+              a(href='http://launchzone.ryerson.ca/')
+                img.logo-bottom(src='/images/logo_lz_stacked.png')
+            .col-sm-4
+              a(href='http://brookfieldinstitute.ca/')
+                img.logo-bottom(src='/images/brookfield_watermark.png')
 
     script(src='/javascripts/jquery-1.10.2.js')
     script(src='/javascripts/bootstrap.js')

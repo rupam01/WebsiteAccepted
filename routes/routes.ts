@@ -14,7 +14,7 @@ export function routes(app:express.Express) : express.Router{
     });
     router.get('/about', function (req, res) {
         console.log('about');
-        res.render('about', { title: 'About...', message: 'The Challenge Accepted Workshop');
+        res.render('about', { title: 'About...', message: 'The Challenge Accepted Workshop' });
     });
     router.get('/contact', function (req: express.Request, res: express.Response) {
         console.log('contact');
@@ -32,9 +32,17 @@ export function routes(app:express.Express) : express.Router{
         console.log('profile');
         res.render('profile', { title: 'Profile', user: req.user });
     });
+
+  var mLectureArg = [
+    {
+      token: "lecture1",
+      lecturenum: 1,
+      tagline: "Introduction"
+    }
+  ];
     router.get('/lectures', function (req, res) {
         console.log('lectures');
-        res.render('lectures', { title: 'Lecture Notes', user: req.user });
+        res.render('lectures', { title: 'Lecture Notes', user: req.user, lectureArg : mLectureArg });
     });
     router.post('/lectures/:lecture_num', (req, res) => {
         var inputlect = req.body;

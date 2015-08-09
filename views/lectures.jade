@@ -5,7 +5,7 @@ mixin lectureBlock(lecture)
       a(href='/slides_' + lecture.token)
         .lecture
           .lect-text 
-            h3 Lecture #{lecture.lecturenum}
+            h2 Lecture #{lecture.lecturenum}
             p #{lecture.tagline}
           .lect-pic
             img(src='/images/' + lecture.token + '.png')

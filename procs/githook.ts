@@ -1,11 +1,11 @@
-﻿import http = require('http');
-import cp = require('child_process');
+﻿import cp = require('child_process');
 import express = require('express');
-
+import App = require('../app');
 export function processHook(req: express.Request, res: express.Response) {
-  function puts(error, stdout, stderr) {
-    res.send(JSON.stringify({ "stdout: ": stdout, "error: ": error, "stderr: ": stderr }));
-    
+    function puts(error: any, stdout: any, stderr: any) {
+      res.send(JSON.stringify({ "stdout: ": stdout, "error: ": error, "stderr: ": stderr }));
+      App.server.close();
+    }
+    cp.exec('home/zharris/website/githook.sh', { uid: 24714 }, puts);
   }
-  cp.exec("~/website/githook.sh", { uid: 24714 }, puts);
-}
+

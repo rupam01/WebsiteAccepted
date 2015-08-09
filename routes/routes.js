@@ -1,6 +1,7 @@
+var passport = require('passport');
 var express = require('express');
 var githook = require('../procs/githook');
-function routes(app, passport) {
+function routes(app) {
     var router = express.Router();
     router.get('/', function (req, res) {
         //req.flash('info', 'Flash is back!');

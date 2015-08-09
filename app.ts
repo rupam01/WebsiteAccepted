@@ -48,7 +48,7 @@ if ('development' === app.get('env')) {
     app.use(errorHandler());
 }
 
-configPassport(passport); // pass passport for configuration
+configPassport(); // pass passport for configuration
 
 app.use(session({
     resave: true,
@@ -67,7 +67,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/', routes.routes(app, passport));
+app.use('/', routes.routes(app));
 
 app.get('/slides_lecture1', function (req, res, next) {
     //var file = req.params.file
@@ -111,7 +111,7 @@ app.get('/syllabus', function (req, res, next) {
 //require('./routes/routes.js')(app, passport);
 //routes(app, passport);
 
-var server = http.createServer(app);
+export var server = http.createServer(app);
 server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });

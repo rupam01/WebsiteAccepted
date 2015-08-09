@@ -1,7 +1,8 @@
-﻿import express = require('express');
+﻿import passport = require('passport');
+import express = require('express');
 import githook = require('../procs/githook');
 
-export function routes(app, passport) : express.Router{
+export function routes(app:express.Express) : express.Router{
     var router = express.Router();
     router.get('/', function (req, res) {
         //req.flash('info', 'Flash is back!');

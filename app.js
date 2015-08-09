@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' === app.get('env')) {
     app.use(errorHandler());
 }
-configPassport(passport); // pass passport for configuration
+configPassport(); // pass passport for configuration
 app.use(session({
     resave: true,
     saveUninitialized: true,
@@ -53,7 +53,7 @@ app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
     next();
 });
-app.use('/', routes.routes(app, passport));
+app.use('/', routes.routes(app));
 app.get('/slides_lecture1', function (req, res, next) {
     //var file = req.params.file
     var file = 'Lesson1.pptx';
@@ -92,8 +92,8 @@ app.get('/syllabus', function (req, res, next) {
 //});
 //require('./routes/routes.js')(app, passport);
 //routes(app, passport);
-var server = http.createServer(app);
-server.listen(app.get('port'), function () {
+exports.server = http.createServer(app);
+exports.server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
 //# sourceMappingURL=app.js.map

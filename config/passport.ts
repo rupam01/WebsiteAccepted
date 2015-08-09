@@ -1,6 +1,7 @@
-﻿import passport_local = require('passport-local');
+﻿import passport = require('passport');
+import passport_local = require('passport-local');
 import passport_google = require('passport-google-oauth');
-import configAuth = require("./auth");
+import configAuth = require('./auth');
 // load up the user model
 import User = require('../models/user');
 var localStrategy = passport_local.Strategy;
@@ -8,7 +9,7 @@ var googleStrategy = passport_google.OAuth2Strategy;
 
 
 // expose this function to our app using module.exports
-var execConfig = function (passport) {
+var execConfig = function () {
 
     // =========================================================================
     // passport session setup ==================================================

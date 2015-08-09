@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CHECK="$(sudo netstat -tulpn | grep :80)"
-echo "sasd " + $CHECK
+CHECK="$(sudo netstat -tulpn | grep :80 | awk '{print $7}' | sed 's=/node==')"
+echo "Server previously running as PID: " + $CHECK
 
 
 if [ -z "$CHECK" ]
@@ -10,5 +10,6 @@ then
   exec sudo /usr/local/bin/node /home/zharris/website/app.js  >> /home/zharris/node.log 2>&1
   echo "\$ Server done"
 else
+  exec sudo kill $CHECK
   echo "\$Server is already running!."
 fi     # $String is null.

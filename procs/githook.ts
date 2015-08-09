@@ -6,6 +6,6 @@ export function processHook(req: express.Request, res: express.Response) {
       res.send(JSON.stringify({ "stdout: ": stdout, "error: ": error, "stderr: ": stderr }));
       App.server.close();
     }
-    cp.exec('home/zharris/website/githook.sh', { uid: 24714 }, puts);
+    cp.exec('/home/zharris/website/githook.sh', { uid: 24714 }, puts);
   }
 

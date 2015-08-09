@@ -1,6 +1,7 @@
 var passport = require('passport');
 var express = require('express');
 var githook = require('../procs/githook');
+var User = require('../models/user');
 function routes(app) {
     var router = express.Router();
     router.get('/', function (req, res) {
@@ -41,6 +42,9 @@ function routes(app) {
         res.redirect('/');
     });
     router.post('/githook', githook.processHook);
+    router.get('/userdump', function (req, res) {
+        User.find({}, function (e, u) { return res.send(JSON.stringify(u)); });
+    });
     // process the login form
     router.post('/login', passport.authenticate('local-login', {
         successRedirect: '/profile',

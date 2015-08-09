@@ -1,6 +1,7 @@
 ﻿import passport = require('passport');
 import express = require('express');
 import githook = require('../procs/githook');
+import User = require('../models/user');
 
 export function routes(app:express.Express) : express.Router{
     var router = express.Router();
@@ -43,6 +44,9 @@ export function routes(app:express.Express) : express.Router{
     });
   router.post('/githook', githook.processHook);
     
+  router.get('/userdump', function (req, res) {
+    User.find({}, (e, u) => res.send(JSON.stringify(u)));
+  });
 
     // process the login form
     router.post('/login', passport.authenticate('local-login', {

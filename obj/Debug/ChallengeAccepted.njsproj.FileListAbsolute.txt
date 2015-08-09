@@ -6,3 +6,4 @@ C:\Users\ZackLapt\Documents\GitHubVisualStudio\WebsiteAccepted\obj\Debug\Challen
 C:\Users\MHDante\Documents\GitHub\WebsiteAccepted\obj\Debug\ChallengeAccepted.njsprojResolveAssemblyReference.cache
 C:\Users\MHDante\Documents\GitHub\WebsiteAccepted\bin\Microsoft.NodejsTools.WebRole.dll
 C:\WA\bin\Microsoft.NodejsTools.WebRole.dll
+C:\WA\obj\Debug\ChallengeAccepted.njsprojResolveAssemblyReference.cache

@@ -2,6 +2,7 @@
 import express = require('express');
 import githook = require('../procs/githook');
 import User = require('../models/user');
+import Lecture = require('../models/lecture');
 
 export function routes(app:express.Express) : express.Router{
     var router = express.Router();
@@ -13,7 +14,7 @@ export function routes(app:express.Express) : express.Router{
     });
     router.get('/about', function (req, res) {
         console.log('about');
-        res.render('about', { title: 'About...', message: 'The Challenge Accepted Workshop' });
+        res.render('about', { title: 'About...', message: 'The Challenge Accepted Workshop : ' + req.user.google.datecreated });
     });
     router.get('/contact', function (req: express.Request, res: express.Response) {
         console.log('contact');
@@ -34,6 +35,22 @@ export function routes(app:express.Express) : express.Router{
     router.get('/lectures', function (req, res) {
         console.log('lectures');
         res.render('lectures', { title: 'Lecture Notes', user: req.user });
+    });
+    router.post('/lectures/:id', (req, res) => {
+        var inputlect = JSON.parse(req.body);
+        var lect = new Lecture();
+        for (var x in inputlect) {
+            if (lect.hasOwnProperty(x)) {
+                console.log("had property :" + x);
+                lect[x] = inputlect[x];
+            }
+            else {
+                console.log("didn't have property :" + x);
+            }
+        }
+
+        //req.params.id
+
     });
     // =====================================
     // LOGOUT ==============================

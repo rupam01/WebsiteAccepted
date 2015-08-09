@@ -12,7 +12,8 @@ var userSchema = new mongoose.Schema({
     id: String,
     token: String,
     email: String,
-    name: String
+    name: String,
+    datecreated: Date,
   }
 
 });
@@ -36,6 +37,7 @@ interface IUser extends mongoose.Document{
     token: string,
     email: string,
     name: string,
+    datecreated: Date,
   };
   generateHash(password: string) : string;
   validPassword(password: string): boolean;

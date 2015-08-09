@@ -1,4 +1,6 @@
-﻿// config/auth.js
+﻿//var sys = require('sys');
+var os = require('os');
+// config/auth.js
 var auth = {
     'googleAuth': {
         'clientID': '972304761099-o457it88g1c39mpue17rpgllcnv0vnla.apps.googleusercontent.com',
@@ -6,5 +8,8 @@ var auth = {
         'callbackURL': 'http://caltoc.scs.ryerson.ca:80/auth/google/callback'
     }
 };
+if (os.type() != 'Linux') {
+    auth.googleAuth.callbackURL = 'http://localhost/auth/google/callback';
+}
 
 export = auth;

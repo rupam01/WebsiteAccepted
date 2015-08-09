@@ -1,3 +1,5 @@
+//var sys = require('sys');
+var os = require('os');
 // config/auth.js
 var auth = {
     'googleAuth': {
@@ -6,5 +8,8 @@ var auth = {
         'callbackURL': 'http://caltoc.scs.ryerson.ca:80/auth/google/callback'
     }
 };
+if (os.type() != 'Linux') {
+    auth.googleAuth.callbackURL = 'http://localhost/auth/google/callback';
+}
 module.exports = auth;
 //# sourceMappingURL=auth.js.map

@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var lectureSchema = new mongoose.Schema({
     lecture_num: Number,
     title: String,
+    tagline: String,
     description: String,
     delivery_date: Date,
     slide_path: String,
@@ -17,6 +18,7 @@ var lectureSchema = new mongoose.Schema({
 interface ILecture extends mongoose.Document {
     lecture_num: number,
     title: string,
+    tagline: string,
     description: string,
     delivery_date: Date,
     slide_path: string,

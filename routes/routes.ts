@@ -12,7 +12,7 @@ export function routes(app:express.Express) : express.Router{
     });
     router.get('/about', function (req, res) {
         console.log('about');
-        res.render('about', { title: 'About -Test', message: 'The Challenge Accepted Workshop' });
+        res.render('about', { title: 'About...', message: 'The Challenge Accepted Workshop' });
     });
     router.get('/contact', function (req: express.Request, res: express.Response) {
         console.log('contact');

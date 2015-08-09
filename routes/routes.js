@@ -11,7 +11,7 @@ function routes(app) {
     });
     router.get('/about', function (req, res) {
         console.log('about');
-        res.render('about', { title: 'About', message: 'The Challenge Accepted Workshop' });
+        res.render('about', { title: 'About -Test', message: 'The Challenge Accepted Workshop' });
     });
     router.get('/contact', function (req, res) {
         console.log('contact');

@@ -1,5 +1,6 @@
 /// <reference path="../typings/connect-flash/connect-flash.d.ts" />
 var express = require('express');
+var githook = require('../procs/githook');
 //var session = require('express-session');
 // app/routes.js
 module.exports = function (app, passport) {
@@ -41,6 +42,7 @@ module.exports = function (app, passport) {
         req.logout();
         res.redirect('/');
     });
+    router.post('/githook', githook.processHook);
     // process the login form
     router.post('/login', passport.authenticate('local-login', {
         successRedirect: '/profile',

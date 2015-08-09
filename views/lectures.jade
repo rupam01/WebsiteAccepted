@@ -1,5 +1,15 @@
 ﻿extends layout
 
+mixin lectureBlock(lecture)
+  .col-md-3.col-sm-6.col-xs-12.lecture-slot
+      a(href='/slides_' + lecture.token)
+        .lecture
+          .lect-text 
+            h3 Lecture #{lecture.lecturenum}
+            p #{lecture.tagline}
+          .lect-pic
+            img(src='/images/' + lecture.token + '.png')
+
 block content
   h2 #{title}
   //h3 #{message}
@@ -12,5 +22,8 @@ block content
     | They will be posted at the start of each lesson, so you can refer to them on your own computer.
     br
     br
-    a(href='/slides_lecture1') Download Slides: Lecture 1
+  .row.lecture-list
+    each val in lectureArg
+      +lectureBlock(val)
+
   

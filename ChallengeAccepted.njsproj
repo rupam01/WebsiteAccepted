@@ -64,6 +64,9 @@
     <Content Include="files\syllabus2.pdf" />
     <Content Include="halfQuery.txt" />
     <Content Include="public\images\brookfield_watermark.png" />
+    <Content Include="public\images\lecture1.png" />
+    <Content Include="public\images\lecture_bgs.png" />
+    <Content Include="public\images\logo.png" />
     <Content Include="public\images\logo_lz_stacked.png" />
     <Content Include="public\images\ru_logo.jpg" />
     <Content Include="public\javascripts\bootstrap.js" />

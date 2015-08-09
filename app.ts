@@ -1,23 +1,22 @@
 ﻿import http = require('http');
 import express = require('express');
-var routes = require('./routes/routes');
 import path = require('path');
-
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var methodOverride = require('method-override');
-var session = require('express-session');
-
-var passport = require('passport');
-
-
-var cookieParser = require('cookie-parser');
-var flash = require('connect-flash');
-var bodyParser = require('body-parser');
-//var multer = require('multer');
-var errorHandler = require('errorhandler');
-var mongoose = require('mongoose');
+import favicon = require('serve-favicon');
+import logger = require('morgan');
+import session = require('express-session');
+import passport = require('passport');
+import cookieParser = require('cookie-parser');
+import flash = require('connect-flash');
+import bodyParser = require('body-parser');
+import errorHandler = require('errorhandler');
+import mongoose = require('mongoose');
+import routes = require('./routes/routes');
+import configPassport = require('./config/passport');
 var app = express();
+
+//is this needed?
+//var methodOverride = require('method-override');
+
 
 //import passport = require('passport-google-oauth');
 mongoose.connect('mongodb://localhost:27017');
@@ -37,26 +36,19 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(methodOverride());
+//app.use(methodOverride());
 
 
 import stylus = require('stylus');
 app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-//app.get('/about', function (req, res) {
-//    console.log('about');
-//    res.render('about', { title: 'About', message: 'Your application description page' });
-//});
-
 // development only
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
     app.use(errorHandler());
 }
 
-require('./config/passport')(passport); // pass passport for configuration
+configPassport(passport); // pass passport for configuration
 
 app.use(session({
     resave: true,
@@ -75,7 +67,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/', routes(app, passport));
+app.use('/', routes.routes(app, passport));
 
 app.get('/slides_lecture1', function (req, res, next) {
     //var file = req.params.file

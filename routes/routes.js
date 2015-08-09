@@ -1,9 +1,6 @@
-/// <reference path="../typings/connect-flash/connect-flash.d.ts" />
 var express = require('express');
 var githook = require('../procs/githook');
-//var session = require('express-session');
-// app/routes.js
-module.exports = function (app, passport) {
+function routes(app, passport) {
     var router = express.Router();
     router.get('/', function (req, res) {
         //req.flash('info', 'Flash is back!');
@@ -86,7 +83,9 @@ module.exports = function (app, passport) {
         failureRedirect: '/'
     }));
     return router;
-};
+}
+exports.routes = routes;
+;
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on 

@@ -1,21 +1,14 @@
-﻿/// <reference path="../typings/express/express.d.ts"/>
-/// <reference path="../typings/passport/passport.d.ts"/>
-/// <reference path="../typings/connect-flash/connect-flash.d.ts"/>
-
-// config/passport.js
-
-// load all the things we need
-import express = require('express');
-import Passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var configAuth = require('./auth');
-
+﻿import passport_local = require('passport-local');
+import passport_google = require('passport-google-oauth');
+import configAuth = require("./auth");
 // load up the user model
-var User = require('../models/user');
+import User = require('../models/user');
+var localStrategy = passport_local.Strategy;
+var googleStrategy = passport_google.OAuth2Strategy;
+
 
 // expose this function to our app using module.exports
-module.exports = function (passport) {
+var execConfig = function (passport) {
 
     // =========================================================================
     // passport session setup ==================================================
@@ -41,7 +34,7 @@ module.exports = function (passport) {
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
 
-    passport.use('local-signup', new LocalStrategy({
+    passport.use('local-signup', new localStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField: 'email',
         passwordField: 'password',
@@ -92,7 +85,7 @@ module.exports = function (passport) {
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
 
-    passport.use('local-login', new LocalStrategy({
+    passport.use('local-login', new localStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField: 'email',
         passwordField: 'password',
@@ -123,7 +116,7 @@ module.exports = function (passport) {
     // =========================================================================
     // GOOGLE ==================================================================
     // =========================================================================
-    passport.use(new GoogleStrategy({
+    passport.use(new googleStrategy({
 
         clientID: configAuth.googleAuth.clientID,
         clientSecret: configAuth.googleAuth.clientSecret,
@@ -170,3 +163,4 @@ module.exports = function (passport) {
 
 
 };
+export = execConfig;

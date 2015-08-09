@@ -1,9 +1,7 @@
-﻿/// <reference path="../typings/connect-flash/connect-flash.d.ts" />
-import express = require('express');
+﻿import express = require('express');
 import githook = require('../procs/githook');
-//var session = require('express-session');
-// app/routes.js
-module.exports = function (app, passport) {
+
+export function routes(app, passport) : express.Router{
     var router = express.Router();
     router.get('/', function (req, res) {
         //req.flash('info', 'Flash is back!');
@@ -15,15 +13,15 @@ module.exports = function (app, passport) {
         console.log('about');
         res.render('about', { title: 'About', message: 'The Challenge Accepted Workshop' });
     });
-    router.get('/contact', function (req: Express.Request, res: express.Response) {
+    router.get('/contact', function (req: express.Request, res: express.Response) {
         console.log('contact');
         res.render('contact', { title: 'Contact Information', message: 'Feel free to contact us:' });
     });
-    router.get('/login', function (req: Express.Request, res: express.Response) {
+    router.get('/login', function (req: express.Request, res: express.Response) {
         console.log('login');
         res.render('login', { title: 'Log In', message: req.flash ? req.flash('loginMessage') : "noflash" });
     });
-    router.get('/signup', function (req: Express.Request, res: express.Response) {
+    router.get('/signup', function (req: express.Request, res: express.Response) {
         console.log('signup');
         res.render('signup', { title: 'Sign Up', message: req.flash ? req.flash('signupMessage') : "noflash" });
     });
@@ -101,7 +99,6 @@ module.exports = function (app, passport) {
 
     return router;
 };
-
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 

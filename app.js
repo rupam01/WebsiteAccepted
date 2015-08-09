@@ -1,19 +1,20 @@
 var http = require('http');
 var express = require('express');
-var routes = require('./routes/routes');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var methodOverride = require('method-override');
 var session = require('express-session');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
-//var multer = require('multer');
 var errorHandler = require('errorhandler');
 var mongoose = require('mongoose');
+var routes = require('./routes/routes');
+var configPassport = require('./config/passport');
 var app = express();
+//is this needed?
+//var methodOverride = require('method-override');
 //import passport = require('passport-google-oauth');
 mongoose.connect('mongodb://localhost:27017');
 app.use(cookieParser('imnotexactlysurewhatthisissupposedtobe')); //3
@@ -29,19 +30,15 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(methodOverride());
+//app.use(methodOverride());
 var stylus = require('stylus');
 app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-//app.get('/about', function (req, res) {
-//    console.log('about');
-//    res.render('about', { title: 'About', message: 'Your application description page' });
-//});
 // development only
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
     app.use(errorHandler());
 }
-require('./config/passport')(passport); // pass passport for configuration
+configPassport(passport); // pass passport for configuration
 app.use(session({
     resave: true,
     saveUninitialized: true,
@@ -56,7 +53,7 @@ app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
     next();
 });
-app.use('/', routes(app, passport));
+app.use('/', routes.routes(app, passport));
 app.get('/slides_lecture1', function (req, res, next) {
     //var file = req.params.file
     var file = 'Lesson1.pptx';

@@ -51,20 +51,19 @@ function routes(app) {
             var paths = sch.paths;
             for (var x in inputlect) {
                 if (paths.hasOwnProperty(x)) {
-                    console.log("had property :" + x);
+                    //console.log("had property :" + x);
                     lect[x] = inputlect[x];
                 }
                 else {
-                    console.log("didn't have property :" + x);
                 }
             }
             lect.lecture_num = req.params.lecture_num;
             lect.save(function (err) {
                 if (err) {
-                    console.log("ERROR: " + err);
+                    console.log("ERROR writing to DB: " + err);
                     throw err;
                 }
-                console.log("wrote to db");
+                console.log("Wrote to DB.");
             });
             res.status(200);
             res.end();

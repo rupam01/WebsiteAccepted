@@ -31,30 +31,34 @@ function routes(app) {
         console.log('profile');
         res.render('profile', { title: 'Profile', user: req.user });
     });
-    var mLectureArg = [
-        {
-            token: "lecture1",
-            lecturenum: 1,
-            tagline: "Introduction"
-        }
-    ];
+    //var mLectureArg = [
+    //  {
+    //    token: "lecture1",
+    //    lecturenum: 1,
+    //    tagline: "Introduction"
+    //  }
+    //];
     router.get('/lectures', function (req, res) {
         console.log('lectures');
-        res.render('lectures', { title: 'Lecture Notes', user: req.user, lectureArg: mLectureArg });
+        Lecture.find({}, function (err, lectures) {
+            if (err)
+                throw err;
+            res.render('lectures', { title: 'Lecture Notes', user: req.user, lectureArg: lectures });
+        });
     });
     router.post('/lectures/:lecture_num', function (req, res) {
         var inputlect = req.body;
         Lecture.findOne({ lecture_num: req.params.lecture_num }, function (err, lect) {
-            if (err || !lect)
+            var msg = 'Updated pre-existing Lecture in DB.';
+            if (err || !lect) {
                 lect = new Lecture();
+                msg = 'Inserted new Lecture in DB.';
+            }
             var sch = Lecture.schema;
             var paths = sch.paths;
             for (var x in inputlect) {
                 if (paths.hasOwnProperty(x)) {
-                    //console.log("had property :" + x);
                     lect[x] = inputlect[x];
-                }
-                else {
                 }
             }
             lect.lecture_num = req.params.lecture_num;
@@ -63,7 +67,7 @@ function routes(app) {
                     console.log("ERROR writing to DB: " + err);
                     throw err;
                 }
-                console.log("Wrote to DB.");
+                console.log(msg);
             });
             res.status(200);
             res.end();

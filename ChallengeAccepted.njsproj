@@ -59,7 +59,7 @@
     <TypeScriptCompile Include="typings\stylus\stylus.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="files\Lesson1.pptx" />
+    <Content Include="files\Lecture1_IntroEvents.pptx" />
     <Content Include="files\Syllabus.pdf" />
     <Content Include="files\syllabus2.pdf" />
     <Content Include="halfQuery.txt" />
@@ -69,7 +69,7 @@
     <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="public\images\brookfield_watermark.png" />
-    <Content Include="public\images\lecture1.png" />
+    <Content Include="public\images\Lecture1_IntroEvents.png" />
     <Content Include="public\images\lecture_bgs.png" />
     <Content Include="public\images\logo.png" />
     <Content Include="public\images\logo_lz_stacked.png" />

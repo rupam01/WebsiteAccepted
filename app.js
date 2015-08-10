@@ -56,7 +56,8 @@ app.use(function (req, res, next) {
 app.use('/', routes.routes(app));
 app.get('/slides_lecture1', function (req, res, next) {
     //var file = req.params.file
-    var file = 'Lesson1.pptx';
+    var file = 'Lesson1_IntroEvents.pptx';
+    console.log("FILENAME:" + file);
     var path = __dirname + '/files/' + file;
     res.download(path);
 });
@@ -65,6 +66,16 @@ app.get('/syllabus', function (req, res, next) {
     var file = 'syllabus2.pdf';
     var path = __dirname + '/files/' + file;
     res.download(path);
+});
+app.get('/files/:filename', function (req, res, next) {
+    var path = __dirname + '/files/' + req.params.filename;
+    console.log("FILENAME:" + req.params.filename);
+    res.download(path, function (err) {
+        if (err) {
+            console.log('Error while downloading ' + req.params.filename + ': ' + err);
+            res.redirect('/');
+        }
+    });
 });
 // error handling middleware. Because it's
 // below our routes, you will be able to

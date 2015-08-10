@@ -1,7 +1,7 @@
 extends layout
 
 mixin question(num, question, hint)
-    .form-group
+    .form-group.question
       label.col-md-4.control-label #{question}
       - var sliderId = 'slider' + num
       .answer.col-md-4
@@ -19,6 +19,7 @@ block content
   p
 
   script(type='text/javascript').
+    var sliders = {};
     var f = function(sliderID){
       var tooltipSlider = document.getElementById(sliderID);
 
@@ -29,7 +30,7 @@ block content
       'max': 5
       }
       });
-
+      sliders[sliderID] = tooltipSlider.noUiSlider;
       var tipHandles = tooltipSlider.getElementsByClassName('noUi-handle');
       var tooltip;
       tooltip = document.createElement('div');
@@ -41,6 +42,32 @@ block content
       tooltip.innerHTML = values[handle];
       });
     };
+    var submit = function(e) {
+      e.preventDefault();
+      console.log("submit button clicked very much so.");
+      var survey = {};
+      survey.lecture_num = "#{lecture_num}";
+      var questions = $('.question');
+      //var tooltips = questions.children('.bar-tooltip');
+      //var spans = tooltips.children('span');
+      //var values = spans.toArray();
+      var comments = questions.children('.comment').children('input').toArray();
+      survey.questions = [];
+      survey.comment = $('#textarea').val();
+      for(var i = 0; i < comments.length; i++) {
+        var q = {};
+        q.num = i + 1;
+        q.rating = sliders['slider' + q.num].get();
+        if (comments[i] && comments[i] !== "") {
+          var input = comments[i]
+          q.comment = input.value;
+        }
+        survey.questions.push(q);
+      }
+      $.post('/survey/' + survey.lecture_num, survey, function(data, status) {
+        console.log(status + " : " + data);
+      });
+    };
   form.form-horizontal
     fieldset
         // Form Name
@@ -48,10 +75,10 @@ block content
         // Multiple Radios (inline)
         
         +question(1,'The curriculum was presented in an easy to understand manner.', 'Optional Comment')
-        +question(2,'The pace of the curriculum was appropriate.', 'Optional Comment')
+        +question(2,'The pace of the curriculum was appropriate.', 'Ex: Too fast or too slow?')
         +question(3,'I was able to clearly hear the presenter.', 'Optional Comment')
-        +question(4,'Today’s workshop seemed well-organized.', 'Optional Comment')
-        +question(5,'Today’s workshop met my expectations.', 'Optional Comment')
+        +question(4,"Today's workshop seemed well-organized.", 'Optional Comment')
+        +question(5,"Today's workshop met my expectations.", 'Optional Comment')
         
         // Textarea
         .form-group
@@ -65,6 +92,15 @@ block content
           |   
           .col-md-4
             button#singlebutton.btn.btn-primary(name='singlebutton') Submit
+            script(type='text/javascript').
+              //sda
+
+              $('#singlebutton').click(submit);
+              //$('#singlebutton').click(function(e) { 
+              //  console.log('printed................');
+              //  e.preventDefault();
+              //});
+              
 
 
 

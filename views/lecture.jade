@@ -22,8 +22,7 @@ block content
           h2 Challenges
         .col-md-4
           h2 Media
-
-    if user.hasCompletedSurvey()
+    if user.hasCompletedSurvey(lectureArg.lecture_num)
       p(style='color:green;') You have sucessfully completed the survey for this workshop. Thank you.
     else
       a(style='color:red;' href='/survey/' + lectureArg.lecture_num) You have not yet completed the survey for this workshop. Please click here to complete it. 

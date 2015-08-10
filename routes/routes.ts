@@ -49,8 +49,9 @@ export function routes(app:express.Express) : express.Router{
         });
     });
     router.get('/surveydump/:lecture_num', function (req, res) {
-        var sSurvey: any = Survey;
-        sSurvey.getSurveyData(req.params.lecture_num, function (result) {
+        console.log("surveydump received.");
+        Survey.getSurveyData(req.params.lecture_num, function (result) {
+            console.log("surveydump ending:\n" + result);
             res.end(result);
         });
     });
@@ -96,13 +97,16 @@ export function routes(app:express.Express) : express.Router{
         });
     });
 
-    router.post('/survey', function (req, res) {
+    router.get('/survey/:lecture_num', (req, res) => res.render('survey.jade', { lecture_num: req.params.lecture_num }));
+
+    router.post('/survey/:lecture_num', function (req, res) {
         //if (req.params.questions.count !== 6) res.end('Invalid number of questions.');
-        var survey = new Survey();
-        survey.lecture_num = req.params.lecture_num;
+        var sentSurvey = req.body;
+        var survey = new Survey.model();
+        survey.lecture_num = sentSurvey.lecture_num;
         survey.date = new Date();
-        survey.comment = req.params.comment;
-        survey.questions = req.params.questions;
+        survey.comment = sentSurvey.comment;
+        survey.questions = sentSurvey.questions;
         survey.save(function (err) {
             if (err) {
                 console.log("ERROR while saving survey to DB: " + err);
@@ -110,6 +114,15 @@ export function routes(app:express.Express) : express.Router{
                 throw err;
             }
             console.log("Wrote survey to DB.");
+
+            req.user.completeSurvey(sentSurvey.lecture_num);
+            req.user.save(function (err) {
+                if (err) {
+                    console.log("Error while saving user survey completed: " + err);
+                }
+                console.log("Sucessfully wrote user survey completed to DB.");
+            });
+
             res.end("Wrote survey to DB.");
         });
     });
@@ -121,12 +134,13 @@ export function routes(app:express.Express) : express.Router{
         req.logout();
         res.redirect('/');
     });
-  router.post('/githook', githook.processHook);
+    router.post('/githook', githook.processHook);
     
-  router.get('/userdump', function (req, res) {
+    router.get('/userdump', function (req, res) {
     User.find({}, (e, u) => res.send(JSON.stringify(u)));
-  });
-  router.get('/survey', (req, res) => res.render('survey.jade', null));
+    });
+    
+
     // process the login form
     router.post('/login', passport.authenticate('local-login', {
             successRedirect: '/profile', // redirect to the secure profile section

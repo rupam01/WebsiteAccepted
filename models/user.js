@@ -1,4 +1,3 @@
-var _this = this;
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 // define the schema for our user model
@@ -23,14 +22,28 @@ userSchema.method('validPassword', function (password) {
 });
 userSchema.method('generateHash', function (password) { return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null); });
 userSchema.method('hasCompletedSurvey', function (lecture_num) {
-    if (!_this.lecture_surveys_completed)
-        _this.lecture_surveys_completed = {};
-    return _this.lecture_surveys_completed.hasOwnProperty(lecture_num);
+    if (this.lecture_surveys_completed == undefined) {
+        this.lecture_surveys_completed = {};
+        console.log("NEW OBJECT! in hasCompletedSurvey");
+    }
+    else {
+        console.log("NOT NEW OBJECT! in hasCompletedSurvey:" + JSON.stringify(this.lecture_surveys_completed, null, '\t')); //[lecture_num]);
+        console.log("lecture_num:" + lecture_num);
+        var innovate = "" + lecture_num;
+        console.log('innovate:' + innovate);
+        console.log("NOT NEW OBJECT! in hasCompletedSurvey2:" + this.lecture_surveys_completed["" + lecture_num]); //[lecture_num]);
+        console.log("thisoldthing?:" + typeof this.lecture_surveys_completed);
+    }
+    return this.lecture_surveys_completed["" + lecture_num] == true;
 });
 userSchema.method('completeSurvey', function (lecture_num) {
-    if (!_this.lecture_surveys_completed)
-        _this.lecture_surveys_completed = {};
-    _this.lecture_surveys_completed.lecture_num = true;
+    if (this.lecture_surveys_completed == undefined) {
+        this.lecture_surveys_completed = {};
+    }
+    //else {
+    //    console.log("NOT NEW OBJECT! in completeSurvey");
+    //}
+    this.lecture_surveys_completed[lecture_num] = true;
 });
 // create the model for users and expose it to our app
 var model = mongoose.model('User', userSchema);

@@ -28,14 +28,31 @@ userSchema.method('validPassword', function (password) {
 userSchema.method('generateHash',
     password => bcrypt.hashSync(password, bcrypt.genSaltSync(8), null));
 
-userSchema.method('hasCompletedSurvey', lecture_num => {
-    if (!this.lecture_surveys_completed) this.lecture_surveys_completed = {};
-    return this.lecture_surveys_completed.hasOwnProperty(lecture_num);
+userSchema.method('hasCompletedSurvey', function (lecture_num) {
+    if (this.lecture_surveys_completed == undefined) {
+        this.lecture_surveys_completed = {};
+        console.log("NEW OBJECT! in hasCompletedSurvey");
+    }
+    else {
+        console.log("NOT NEW OBJECT! in hasCompletedSurvey:" + JSON.stringify(this.lecture_surveys_completed, null, '\t'));//[lecture_num]);
+        console.log("lecture_num:" + lecture_num);
+        var innovate = "" + lecture_num;
+        console.log('innovate:' + innovate);
+        console.log("NOT NEW OBJECT! in hasCompletedSurvey2:" + this.lecture_surveys_completed["" + lecture_num]);//[lecture_num]);
+        console.log("thisoldthing?:" + typeof this.lecture_surveys_completed);
+    }
+    return this.lecture_surveys_completed[""+lecture_num] == true;
 });
 
-userSchema.method('completeSurvey', lecture_num => {
-    if (!this.lecture_surveys_completed) this.lecture_surveys_completed = {};
-    this.lecture_surveys_completed.lecture_num = true;
+userSchema.method('completeSurvey', function (lecture_num) {
+    if (this.lecture_surveys_completed == undefined) {
+        this.lecture_surveys_completed = {};
+        //console.log("NEW OBJECT! in completeSurvey");
+    }
+    //else {
+    //    console.log("NOT NEW OBJECT! in completeSurvey");
+    //}
+    this.lecture_surveys_completed[lecture_num] = true;
 });
 
 interface IUser extends mongoose.Document{

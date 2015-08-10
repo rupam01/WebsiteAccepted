@@ -92,9 +92,11 @@
     <Content Include="public\stylesheets\bootstrap-theme.min.css" />
     <Content Include="public\stylesheets\bootstrap.css" />
     <Content Include="public\stylesheets\bootstrap.min.css" />
+    <Content Include="public\stylesheets\nouislider.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="restart_server.sh" />
+    <Content Include="views\survey.jade" />
     <Content Include="views\lecture.jade" />
     <Content Include="views\lectures.jade" />
     <Content Include="views\syllabus.jade" />
@@ -143,6 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="public\javascripts\npm.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\javascripts\nouislider.js" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

@@ -2,13 +2,13 @@
 
 mixin lectureBlock(lecture)
   .col-md-3.col-sm-6.col-xs-12.lecture-slot
-      a(href='/slides_' + lecture.token)
+      a(href='/files/' + lecture.getToken() + '.pptx')
         .lecture
           .lect-text 
-            h2 Lecture #{lecture.lecturenum}
-            p #{lecture.tagline}
+            h2 Lecture #{lecture.lecture_num}
+            p #{lecture.title}
           .lect-pic
-            img(src='/images/' + lecture.token + '.png')
+            img(src='/images/' + lecture.getToken() + '.png')
 
 block content
   h2 #{title}

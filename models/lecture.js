@@ -4,13 +4,17 @@ var bcrypt = require('bcrypt-nodejs');
 var lectureSchema = new mongoose.Schema({
     lecture_num: Number,
     title: String,
-    tagline: String,
+    short_title: String,
     description: String,
     delivery_date: Date,
     slide_path: String,
     challenge_path: String,
     media_path: String,
     links: [{ name: String, description: String, url: String }],
+});
+lectureSchema.method('getToken', function () {
+    var that = this; // var yes: IAffirmation = indeedly;
+    return 'Lecture' + this.lecture_num + '_' + that.short_title;
 });
 // create the model for users and expose it to our app
 var model = mongoose.model('Lecture', lectureSchema);

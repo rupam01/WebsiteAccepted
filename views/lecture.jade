@@ -8,7 +8,7 @@ mixin lectureBlock(lecture)
             h2 Lecture #{lecture.lecturenum}
             p #{lecture.tagline}
           .lect-pic
-            img(src='/images/' + lecture.token + '.png')
+            img(src='/images/' + lecture.getToken() + '.png')
 
 block content
   h2 Lecture #{lectureArg.number} - #{lectureArg.title}
@@ -21,7 +21,7 @@ block content
         .col-md-4
           h2 Lecture slides
           .lecture-slot
-          a(href='/slides_' + lecture.token)
+          a(href='/slides_' + lecture.getToken())
             .lecture
               .lect-text 
                 h2 Lecture #{lecture.lecturenum}

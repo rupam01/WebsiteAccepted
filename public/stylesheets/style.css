@@ -129,3 +129,26 @@ footer {
     overflow: hidden !important;
   }
 }
+.bar-tooltip {
+  display: block;
+  position: absolute;
+  border: 1px solid #d9d9d9;
+  font: 400 12px/12px Arial;
+  border-radius: 3px;
+  background: #fff;
+  top: -23px;
+  padding: 5px;
+  left: -9px;
+  text-align: center;
+  width: 50px;
+}
+.bar-tooltip strong {
+  display: block;
+  padding: 2px;
+}
+.answer {
+  padding-top: 20px;
+}
+.comment {
+  padding-top: 10px;
+}

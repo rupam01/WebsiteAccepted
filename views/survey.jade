@@ -1,0 +1,70 @@
+extends layout
+
+mixin question(num, question, hint)
+    .form-group
+      label.col-md-4.control-label #{question}
+      - var sliderId = 'slider' + num
+      .answer.col-md-4
+        .slider-tooltip(id=sliderId)
+        script(type='text/javascript').
+          f("#{sliderId}");
+      .comment.col-md-4
+        input(type='text', id='comment' + num, placeholder = hint)
+
+block content
+  script(src='/javascripts/nouislider.js')
+  h2 Feedback Form - Challenge Accepted
+  p As this is the first pilot of the Challenge Accepted program, we appreciate your help in evaluating today's workshop.
+  p Please indicate your rating of the presentation in the categories below by selecting the appropriate number:
+  p
+
+  script(type='text/javascript').
+    var f = function(sliderID){
+      var tooltipSlider = document.getElementById(sliderID);
+
+      noUiSlider.create(tooltipSlider, {
+      start: [3],
+      range: {
+      'min': 1,
+      'max': 5
+      }
+      });
+
+      var tipHandles = tooltipSlider.getElementsByClassName('noUi-handle');
+      var tooltip;
+      tooltip = document.createElement('div');
+      tipHandles[0].appendChild(tooltip);
+      tooltip.className += 'bar-tooltip';
+      tooltip.innerHTML = '<span></span>';
+      tooltip = tooltip.getElementsByTagName('span')[0];
+      tooltipSlider.noUiSlider.on('update', function( values, handle ){
+      tooltip.innerHTML = values[handle];
+      });
+    };
+  form.form-horizontal
+    fieldset
+        // Form Name
+        legend
+        // Multiple Radios (inline)
+        
+        +question(1,'The curriculum was presented in an easy to understand manner.', 'Optional Comment')
+        +question(2,'The pace of the curriculum was appropriate.', 'Optional Comment')
+        +question(3,'I was able to clearly hear the presenter.', 'Optional Comment')
+        +question(4,'Today’s workshop seemed well-organized.', 'Optional Comment')
+        +question(5,'Today’s workshop met my expectations.', 'Optional Comment')
+        
+        // Textarea
+        .form-group
+          label.col-md-4.control-label(for='textarea') General Comments About today's lecture
+          |   
+          .col-md-4
+            textarea#textarea.form-control(name='textarea', style="min-width:100%", placeholder = "What do you want to see more of? Was there something you didn't understand?")
+        // Button
+        .form-group
+          label.col-md-4.control-label(for='singlebutton')
+          |   
+          .col-md-4
+            button#singlebutton.btn.btn-primary(name='singlebutton') Submit
+
+
+

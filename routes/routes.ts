@@ -126,7 +126,7 @@ export function routes(app:express.Express) : express.Router{
   router.get('/userdump', function (req, res) {
     User.find({}, (e, u) => res.send(JSON.stringify(u)));
   });
-
+  router.get('/survey', (req, res) => res.render('survey.jade', null));
     // process the login form
     router.post('/login', passport.authenticate('local-login', {
             successRedirect: '/profile', // redirect to the secure profile section

@@ -115,6 +115,7 @@ function routes(app) {
     router.get('/userdump', function (req, res) {
         User.find({}, function (e, u) { return res.send(JSON.stringify(u)); });
     });
+    router.get('/survey', function (req, res) { return res.render('survey.jade', null); });
     // process the login form
     router.post('/login', passport.authenticate('local-login', {
         successRedirect: '/profile',

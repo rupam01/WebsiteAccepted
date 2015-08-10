@@ -33,14 +33,7 @@ export function routes(app:express.Express) : express.Router{
         console.log('profile');
         res.render('profile', { title: 'Profile', user: req.user });
     });
-
-  var mLectureArg = [
-    {
-      token: "lecture1",
-      lecturenum: 1,
-      tagline: "Introduction"
-    }
-  ];
+    
     router.get('/lectures', function (req, res) {
         console.log('lectures');
         Lecture.find({}, function (err, lectures) {
@@ -189,7 +182,8 @@ export function routes(app:express.Express) : express.Router{
     // the callback after google has authenticated the user
     router.get('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '/profile',
+            //successRedirect: '/profile',
+            successRedirect: '/lectures',
             failureRedirect: '/'
         }));
 

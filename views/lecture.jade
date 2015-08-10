@@ -1,31 +1,39 @@
 ﻿extends layout
 
 block content
-  h2 Lecture #{lectureArg.lecture_num} - #{lectureArg.title}
-  //h3 #{message}
   if !login
     p Please log in to view the lecture notes.
   else
-    .jumbotron
+    .jumbotron(style="background-color:#eee; padding:0px;")
       .row
-        .col-md-4
-          h2 Download slides
-          .lecture-slot
-          a(href='/files/' + lectureArg.getToken() + '.pptx')
-            .lecture
-              .lect-text
-                h2 Lecture #{lectureArg.lecture_num}
-                p #{lectureArg.title}
-              .lect-pic
-                img(src='/images/' + lectureArg.getToken() + '.png')
-        .col-md-4
-          h2 Challenges
-        .col-md-4
-          h2 Media
-    if user.hasCompletedSurvey(lectureArg.lecture_num)
-      p(style='color:green;') You have sucessfully completed the survey for this workshop. Thank you.
-    else
-      a(style='color:red;' href='/survey/' + lectureArg.lecture_num) You have not yet completed the survey for this workshop. Please click here to complete it. 
+        .col-md-8(style="padding:40px;")
+          h1 Lecture #{lectureArg.lecture_num} 
+          h1 #{lectureArg.title}
+          h3 #{lectureArg.description}
+        .col-md-4.text-center(style="padding:20px;")
+          img(style='width:168px;height:300px;' src='/images/Lecture' + lectureArg.lecture_num + '.png')
+      .row.text-center(style="padding:0px;background-color:#aaa; margin:0px;")
+        h2 Downloads:
+      .row.text-center(style="padding:20px;background-color:#aaa; margin:0px")
+        .col-md-4(style="border-right:1px solid #999;")
+          .lecturebtn(style="background-color: #477ABF;")
+            a(href='/files/' + lectureArg.getToken() + '.pdf')
+              h3 SLIDES
+        .col-md-4(style="border-right:1px solid #999;")
+          .lecturebtn(style="background-color: #609826;")
+            a(href='/files/Lecture' + lectureArg.lecture_num + '_Challenges.pdf')
+              h3 CHALLENGES
+        if lectureArg.has_media
+          .col-md-4
+            .lecturebtn(style="background-color: #FF8800;")
+              a(href='/files/Lecture' + lectureArg.lecture_num + '_Media.zip')
+                h3 MEDIA
+    .row.text-center
+      if user.hasCompletedSurvey(lectureArg.lecture_num)
+        h3(style='color:green;') You have sucessfully completed the survey for this workshop. Thank you.
+      else
+        a(style='color:red;' href='/survey/' + lectureArg.lecture_num) 
+          h3 You have not yet completed the survey for this workshop. Please click here to complete it. 
 
 
   

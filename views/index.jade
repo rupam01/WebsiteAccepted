@@ -1,14 +1,17 @@
 ﻿extends layout
 
 block content
-  .jumbotron
-    //h1(style="text-align:right;") Challenge Accepted
-    //h1(style="text-align:right;") Workshop Website
-    h1(style="line-height:30px;") Challenge Accepted
-    h1(style="font-size:50px;") Workshop Website
-    p.lead Challenge Accepted is a workshop at Ryerson University that teaches students how to code visually by making Apps with App Inventor.
-    //p
-    //  a.btn.btn-primary.btn-large(href='http://expressjs.com/') Learn more &raquo;
+  .jumbotron(style='padding-top:10px;')
+     .row
+      .col-md-8
+        h1(style="font-size:50px;") Welcome to the Workshop Website
+        p.lead Challenge Accepted is a workshop at Ryerson University that teaches students how to code visually by making Apps with App Inventor.
+      if !login
+        .col-md-4.vertical-center
+          br
+          br
+          a.center-block.btn.btn-danger(href='/auth/google' ) #[span.fa.fa-google-plus Log in with Google] 
+          p to download workshop materials
   .row
     .col-md-4
       h2 App Inventor

@@ -7,9 +7,7 @@ var lectureSchema = new mongoose.Schema({
     short_title: String,
     description: String,
     delivery_date: Date,
-    slide_path: String,
-    challenge_path: String,
-    media_path: String,
+    has_media: Boolean,
     links: [{ name: String, description: String, url: String }],
 });
 lectureSchema.method('getToken', function () {

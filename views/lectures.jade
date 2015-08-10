@@ -8,7 +8,7 @@ mixin lectureBlock(lecture)
             h2 Lecture #{lecture.lecture_num}
             p #{lecture.title}
           .lect-pic
-            img(src='/images/' + lecture.getToken() + '.png')
+            img(src='/images/Lecture' + lecture.lecture_num + '.png')
 
 block content
   h2 #{title}

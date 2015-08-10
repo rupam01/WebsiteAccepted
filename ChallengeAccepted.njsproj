@@ -60,7 +60,14 @@
     <TypeScriptCompile Include="typings\stylus\stylus.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="files\Lecture1_Challenges.pdf" />
     <Content Include="files\Lecture1_IntroEvents.pptx" />
+    <Content Include="files\Lecture2_Challenges.pdf" />
+    <Content Include="files\Lecture1_IntroEvents.pdf" />
+    <Content Include="files\Lecture2_Media.zip" />
+    <Content Include="files\Lecture3_Challenges.pdf" />
+    <Content Include="files\Lecture3_ConditionalsAndLists.pdf" />
+    <Content Include="files\Lecture3_Media.zip" />
     <Content Include="files\Syllabus.pdf" />
     <Content Include="files\syllabus2.pdf" />
     <Content Include="halfQuery.txt" />
@@ -70,7 +77,8 @@
     <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="public\images\brookfield_watermark.png" />
-    <Content Include="public\images\Lecture1_IntroEvents.png" />
+    <Content Include="public\images\Lecture1.png" />
+    <Content Include="public\images\Lecture3.png" />
     <Content Include="public\images\lecture_bgs.png" />
     <Content Include="public\images\logo.png" />
     <Content Include="public\images\logo_lz_stacked.png" />

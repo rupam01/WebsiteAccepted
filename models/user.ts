@@ -31,16 +31,16 @@ userSchema.method('generateHash',
 userSchema.method('hasCompletedSurvey', function (lecture_num) {
     if (this.lecture_surveys_completed == undefined) {
         this.lecture_surveys_completed = {};
-        console.log("NEW OBJECT! in hasCompletedSurvey");
+        //console.log("NEW OBJECT! in hasCompletedSurvey");
     }
-    else {
-        console.log("NOT NEW OBJECT! in hasCompletedSurvey:" + JSON.stringify(this.lecture_surveys_completed, null, '\t'));//[lecture_num]);
-        console.log("lecture_num:" + lecture_num);
-        var innovate = "" + lecture_num;
-        console.log('innovate:' + innovate);
-        console.log("NOT NEW OBJECT! in hasCompletedSurvey2:" + this.lecture_surveys_completed["" + lecture_num]);//[lecture_num]);
-        console.log("thisoldthing?:" + typeof this.lecture_surveys_completed);
-    }
+    //else {
+    //    console.log("NOT NEW OBJECT! in hasCompletedSurvey:" + JSON.stringify(this.lecture_surveys_completed, null, '\t'));//[lecture_num]);
+    //    console.log("lecture_num:" + lecture_num);
+    //    var innovate = "" + lecture_num;
+    //    console.log('innovate:' + innovate);
+    //    console.log("NOT NEW OBJECT! in hasCompletedSurvey2:" + this.lecture_surveys_completed["" + lecture_num]);//[lecture_num]);
+    //    console.log("thisoldthing?:" + typeof this.lecture_surveys_completed);
+    //}
     return this.lecture_surveys_completed[""+lecture_num] == true;
 });
 

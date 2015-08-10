@@ -78,6 +78,7 @@
     <Content Include="public\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="public\images\brookfield_watermark.png" />
     <Content Include="public\images\Lecture1.png" />
+    <Content Include="public\images\Lecture2.png" />
     <Content Include="public\images\Lecture3.png" />
     <Content Include="public\images\lecture_bgs.png" />
     <Content Include="public\images\logo.png" />

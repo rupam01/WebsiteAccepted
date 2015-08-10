@@ -97,6 +97,7 @@
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="restart_server.sh" />
+    <Content Include="views\message.jade" />
     <Content Include="views\survey.jade" />
     <Content Include="views\lecture.jade" />
     <Content Include="views\lectures.jade" />

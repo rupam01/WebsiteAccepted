@@ -25,21 +25,19 @@ html
         .navbar-collapse.collapse
           ul.nav.navbar-nav.navbar-right
             li
-              a(href='https://mydmz.ryerson.ca/learntocode/') Promo Site
-            li
-              a(href='/about') About
+              a(href='https://mydmz.ryerson.ca/learntocode/#about') About
             li
               a(href='/contact') Contact
             if login
-              li
-                a(href='/profile') Profile
+              //li
+              //  a(href='/profile') Profile
               li
                 a(href='/lectures') Lecture Notes
               li
                 a(href='/logout') Log Out
             else
               li
-                a(href='/login') Log In
+                a(href='/auth/google') Log In
             li
               a.ai2(href="http://ai2.appinventor.mit.edu/", target='_blank' style='background:#FF8800')
                 | App Inventor
@@ -53,7 +51,7 @@ html
       - var year2 = new Date().getFullYear();
       .footer-above
         .container
-          h3 &copy; #{year2} - Challenge Accepted - Ryerson University
+          h4 &copy; #{year2} - Challenge Accepted - Ryerson University
           br
           .footer-col
             .col-sm-4

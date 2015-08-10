@@ -3,6 +3,7 @@ import express = require('express');
 import githook = require('../procs/githook');
 import User = require('../models/user');
 import Lecture = require('../models/lecture');
+import Survey = require('../models/survey');
 
 export function routes(app:express.Express) : express.Router{
     var router = express.Router();
@@ -47,10 +48,14 @@ export function routes(app:express.Express) : express.Router{
             res.render('lectures', { title: 'Lecture Notes', user: req.user, lectureArg: lectures });
         });
     });
-
+    router.get('/surveydump/:lecture_num', function (req, res) {
+        var sSurvey: any = Survey;
+        sSurvey.getSurveyData(req.params.lecture_num, function (result) {
+            res.end(result);
+        });
+    });
     router.get('/lecture/:lecture_num', function (req, res) {
       Lecture.findOne({ lecture_num: req.params.lecture_num }, function (err, lect) {
-
         if (err || !lect) res.redirect('/');
         res.render('lecture', { user: req.user, lectureArg: lect });
       });
@@ -89,9 +94,26 @@ export function routes(app:express.Express) : express.Router{
             res.status(200);
             res.end();
         });
-        
-
     });
+
+    router.post('/survey', function (req, res) {
+        //if (req.params.questions.count !== 6) res.end('Invalid number of questions.');
+        var survey = new Survey();
+        survey.lecture_num = req.params.lecture_num;
+        survey.date = new Date();
+        survey.comment = req.params.comment;
+        survey.questions = req.params.questions;
+        survey.save(function (err) {
+            if (err) {
+                console.log("ERROR while saving survey to DB: " + err);
+                res.end("ERROR while saving survey to DB: " + err);
+                throw err;
+            }
+            console.log("Wrote survey to DB.");
+            res.end("Wrote survey to DB.");
+        });
+    });
+
     // =====================================
     // LOGOUT ==============================
     // =====================================

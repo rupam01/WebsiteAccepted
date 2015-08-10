@@ -1,17 +1,7 @@
 ﻿extends layout
 
-mixin lectureBlock(lecture)
-  .col-md-3.col-sm-6.col-xs-12.lecture-slot
-      a(href='/slides_' + lecture.token)
-        .lecture
-          .lect-text 
-            h2 Lecture #{lecture.lecturenum}
-            p #{lecture.tagline}
-          .lect-pic
-            img(src='/images/' + lecture.getToken() + '.png')
-
 block content
-  h2 Lecture #{lectureArg.number} - #{lectureArg.title}
+  h2 Lecture #{lectureArg.lecture_num} - #{lectureArg.title}
   //h3 #{message}
   if !login
     p Please log in to view the lecture notes.
@@ -19,19 +9,24 @@ block content
     .jumbotron
       .row
         .col-md-4
-          h2 Lecture slides
+          h2 Download slides
           .lecture-slot
-          a(href='/slides_' + lecture.getToken())
+          a(href='/files/' + lectureArg.getToken() + '.pptx')
             .lecture
-              .lect-text 
-                h2 Lecture #{lecture.lecturenum}
-                p #{lecture.tagline}
+              .lect-text
+                h2 Lecture #{lectureArg.lecture_num}
+                p #{lectureArg.title}
               .lect-pic
-                img(src='/images/' + lecture.token + '.png')
+                img(src='/images/' + lectureArg.getToken() + '.png')
         .col-md-4
           h2 Challenges
         .col-md-4
-          h2 Assignments
+          h2 Media
+
+    if user.hasCompletedSurvey()
+      p(style='color:green;') You have sucessfully completed the survey for this workshop. Thank you.
+    else
+      a(style='color:red;' href='/survey/' + lectureArg.lecture_num) You have not yet completed the survey for this workshop. Please click here to complete it. 
 
 
   

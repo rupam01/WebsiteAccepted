@@ -2,7 +2,7 @@
 
 mixin lectureBlock(lecture)
   .col-md-3.col-sm-6.col-xs-12.lecture-slot
-      a(href='/files/' + lecture.getToken() + '.pptx')
+      a(href='/lecture/' + lecture.lecture_num)
         .lecture
           .lect-text 
             h2 Lecture #{lecture.lecture_num}

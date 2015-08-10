@@ -1,3 +1,4 @@
+var _this = this;
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 // define the schema for our user model
@@ -12,7 +13,8 @@ var userSchema = new mongoose.Schema({
         email: String,
         name: String,
         datecreated: Date,
-    }
+    },
+    lecture_surveys_completed: Object
 });
 // methods ======================
 // generating a hash
@@ -20,6 +22,16 @@ userSchema.method('validPassword', function (password) {
     return bcrypt.compareSync(password, this.local.password);
 });
 userSchema.method('generateHash', function (password) { return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null); });
+userSchema.method('hasCompletedSurvey', function (lecture_num) {
+    if (!_this.lecture_surveys_completed)
+        _this.lecture_surveys_completed = {};
+    return _this.lecture_surveys_completed.hasOwnProperty(lecture_num);
+});
+userSchema.method('completeSurvey', function (lecture_num) {
+    if (!_this.lecture_surveys_completed)
+        _this.lecture_surveys_completed = {};
+    _this.lecture_surveys_completed.lecture_num = true;
+});
 // create the model for users and expose it to our app
 var model = mongoose.model('User', userSchema);
 module.exports = model;

@@ -1,0 +1,37 @@
+﻿extends layout
+
+mixin lectureBlock(lecture)
+  .col-md-3.col-sm-6.col-xs-12.lecture-slot
+      a(href='/slides_' + lecture.token)
+        .lecture
+          .lect-text 
+            h2 Lecture #{lecture.lecturenum}
+            p #{lecture.tagline}
+          .lect-pic
+            img(src='/images/' + lecture.token + '.png')
+
+block content
+  h2 Lecture #{lectureArg.number} - #{lectureArg.title}
+  //h3 #{message}
+  if !login
+    p Please log in to view the lecture notes.
+  else
+    .jumbotron
+      .row
+        .col-md-4
+          h2 Lecture slides
+          .lecture-slot
+          a(href='/slides_' + lecture.token)
+            .lecture
+              .lect-text 
+                h2 Lecture #{lecture.lecturenum}
+                p #{lecture.tagline}
+              .lect-pic
+                img(src='/images/' + lecture.token + '.png')
+        .col-md-4
+          h2 Challenges
+        .col-md-4
+          h2 Assignments
+
+
+  

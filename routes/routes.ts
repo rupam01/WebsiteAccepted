@@ -44,6 +44,14 @@ export function routes(app:express.Express) : express.Router{
         console.log('lectures');
         res.render('lectures', { title: 'Lecture Notes', user: req.user, lectureArg : mLectureArg });
     });
+
+    router.get('/lecture/:lecture_num', function (req, res) {
+      Lecture.findOne({ lecture_num: req.params.lecture_num }, function (err, lect) {
+
+        if (err || !lect) res.redirect('/');
+        res.render('lecture', { user: req.user, lectureArg: mLectureArg });
+      });
+    });
     router.post('/lectures/:lecture_num', (req, res) => {
         var inputlect = req.body;
         Lecture.findOne({ lecture_num: req.params.lecture_num }, function (err, lect) {

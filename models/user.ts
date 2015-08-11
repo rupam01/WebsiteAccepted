@@ -53,6 +53,7 @@ userSchema.method('completeSurvey', function (lecture_num) {
     //    console.log("NOT NEW OBJECT! in completeSurvey");
     //}
     this.lecture_surveys_completed[lecture_num] = true;
+    this.markModified('lecture_surveys_completed');
 });
 
 interface IUser extends mongoose.Document{

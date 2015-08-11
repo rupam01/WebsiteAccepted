@@ -4,7 +4,8 @@ import githook = require('../procs/githook');
 import User = require('../models/user');
 import Lecture = require('../models/lecture');
 import Survey = require('../models/survey');
-
+var mongoose = require('mongoose');
+var _ = require('underscore');
 export function routes(app:express.Express) : express.Router{
     var router = express.Router();
     router.get('/', function (req, res) {
@@ -90,9 +91,16 @@ export function routes(app:express.Express) : express.Router{
         });
     });
 
-    router.get('/survey/:lecture_num', (req, res) => res.render('survey.jade', { lecture_num: req.params.lecture_num }));
+    router.get('/survey/:lecture_num', isLoggedIn,  (req, res) => res.render('survey.jade', { lecture_num: req.params.lecture_num }));
 
-    router.post('/survey/:lecture_num', function (req, res) {
+    router.post('/survey/:lecture_num', isLoggedIn, function (req, res) {
+
+
+        if (!req.user || req.user.hasCompletedSurvey(req.params.lecture_num)) {
+            console.log("NUH UH: user has already submitted survey");
+            res.redirect('/');
+            return;
+        }
         //if (req.params.questions.count !== 6) res.end('Invalid number of questions.');
         var sentSurvey = req.body;
         var survey = new Survey.model();
@@ -114,7 +122,7 @@ export function routes(app:express.Express) : express.Router{
                     console.log("Error while saving user survey completed: " + err);
                 }
                 console.log("Sucessfully wrote user survey completed to DB.");
-            });
+            }).exec();
             res.redirect('/lecture/' + survey.lecture_num);
             //res.end("Wrote survey to DB.");
         });
@@ -187,6 +195,11 @@ export function routes(app:express.Express) : express.Router{
             failureRedirect: '/'
         }));
 
+
+
+    router.get('/scrub', require('../config/duplicateScrub'));
+
+    
 
 
     return router;

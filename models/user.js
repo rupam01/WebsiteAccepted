@@ -43,6 +43,7 @@ userSchema.method('completeSurvey', function (lecture_num) {
     //    console.log("NOT NEW OBJECT! in completeSurvey");
     //}
     this.lecture_surveys_completed[lecture_num] = true;
+    this.markModified('lecture_surveys_completed');
 });
 // create the model for users and expose it to our app
 var model = mongoose.model('User', userSchema);

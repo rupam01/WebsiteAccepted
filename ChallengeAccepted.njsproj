@@ -35,6 +35,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="config\auth.ts" />
+    <TypeScriptCompile Include="config\duplicateScrub.ts" />
     <TypeScriptCompile Include="config\passport.ts" />
     <TypeScriptCompile Include="models\lecture.ts" />
     <TypeScriptCompile Include="models\survey.ts" />

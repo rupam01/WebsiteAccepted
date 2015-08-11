@@ -14,6 +14,19 @@ var surveySchema = new mongoose.Schema({
 // create the model for users and expose it to our app
 exports.model = mongoose.model('Survey', surveySchema);
 //export = model;
+function getRawSurveyData(lecture_num, callback) {
+    exports.model.find({ lecture_num: lecture_num }, function (err, surveys) {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        var result = JSON.stringify(surveys, null, '\t');
+        console.log(result);
+        callback(result);
+    });
+}
+exports.getRawSurveyData = getRawSurveyData;
+;
 function getSurveyData(lecture_num, callback) {
     exports.model.find({ lecture_num: lecture_num }, function (err, surveys) {
         if (err) {

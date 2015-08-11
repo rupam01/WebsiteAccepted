@@ -27,7 +27,17 @@ interface ISurvey extends mongoose.Document {
 // create the model for users and expose it to our app
 export var model = mongoose.model<ISurvey>('Survey', surveySchema);
 //export = model;
-
+export function getRawSurveyData(lecture_num, callback) {
+    model.find({ lecture_num: lecture_num }, function (err, surveys) {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        var result = JSON.stringify(surveys, null, '\t');
+        console.log(result);
+        callback(result);
+    });
+};
 export function getSurveyData(lecture_num, callback) {
     model.find({ lecture_num: lecture_num }, function (err, surveys) {
         if (err) {

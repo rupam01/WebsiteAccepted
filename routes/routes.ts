@@ -43,12 +43,20 @@ export function routes(app:express.Express) : express.Router{
             res.render('lectures', { title: 'Lecture Notes', user: req.user, lectureArg: lectures });
         });
     });
-    router.get('/surveydump/:lecture_num', function (req, res) {
+    router.get('/surveydump/:lecture_num/:raw?', function (req, res) {
+
         console.log("surveydump received.");
-        Survey.getSurveyData(req.params.lecture_num, function (result) {
-            console.log("surveydump ending:\n" + result);
-            res.end(result);
-        });
+        if (req.params.raw) {
+            Survey.getRawSurveyData(req.params.lecture_num, function (result) {
+                console.log("surveydump ending:\n" + result);
+                res.end(result);
+            });
+        } else {
+            Survey.getSurveyData(req.params.lecture_num, function (result) {
+                console.log("surveydump ending:\n" + result);
+                res.end(result);
+            });
+        }
     });
     router.get('/lecture/:lecture_num', function (req, res) {
       Lecture.findOne({ lecture_num: req.params.lecture_num }, function (err, lect) {

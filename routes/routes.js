@@ -6,6 +6,7 @@ var Lecture = require('../models/lecture');
 var Survey = require('../models/survey');
 var mongoose = require('mongoose');
 var _ = require('underscore');
+var dupe = require('../config/duplicate_scrub');
 function routes(app) {
     var router = express.Router();
     router.get('/', function (req, res) {
@@ -169,7 +170,7 @@ function routes(app) {
         successRedirect: '/lectures',
         failureRedirect: '/'
     }));
-    router.get('/scrub', require('../config/duplicateScrub'));
+    router.get('/scrub', dupe);
     return router;
 }
 exports.routes = routes;

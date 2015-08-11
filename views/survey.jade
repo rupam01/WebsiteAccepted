@@ -67,6 +67,9 @@ block content
       $.post('/survey/' + survey.lecture_num, survey, function(data, status) {
         console.log(status + " : " + data);
       });
+      alert("Thank you for completing the survey");
+      window.location = '/lecture/'+survey.lecture_num;
+
     };
   form.form-horizontal
     fieldset

@@ -104,7 +104,8 @@ function routes(app) {
                 }
                 console.log("Sucessfully wrote user survey completed to DB.");
             });
-            res.end("Wrote survey to DB.");
+            res.redirect('/lecture/' + survey.lecture_num);
+            //res.end("Wrote survey to DB.");
         });
     });
     // =====================================

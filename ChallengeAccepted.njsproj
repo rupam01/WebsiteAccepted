@@ -69,6 +69,7 @@
     <Content Include="files\Lecture3_Challenges.pdf" />
     <Content Include="files\Lecture3_ConditionalsAndLists.pdf" />
     <Content Include="files\Lecture3_Media.zip" />
+    <Content Include="files\Lecture4_LoopsTimers.pdf" />
     <Content Include="files\Syllabus.pdf" />
     <Content Include="files\syllabus2.pdf" />
     <Content Include="halfQuery.txt" />

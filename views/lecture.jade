@@ -26,11 +26,12 @@ block content
         if lectureArg.has_media
           .col-md-4
             .lecturebtn(style="background-color: #FF8800;")
-              - var str = '/files/Lecture' + lectureArg.lecture_num + '_Media.zip';
-              if lectureArg.lecture_num == 4
-                - str = http://goo.gl/64NsJK
-              //a(href='/files/Lecture' + lectureArg.lecture_num + '_Media.zip')
-              a(href=str)
+              //- var str = '/files/Lecture' + lectureArg.lecture_num + '_Media.zip';
+              //if lectureArg.lecture_num == 4
+              //  - str = http://goo.gl/64NsJK
+              a(href=(lectureArg.lecture_num == 4) ? 'http://goo.gl/64NsJK' : '/files/Lecture' + lectureArg.lecture_num + '_Media.zip')
+                h3 MEDIA
+              //a(href=str)
                 h3 MEDIA
     .row.text-center
       if user.hasCompletedSurvey(lectureArg.lecture_num)

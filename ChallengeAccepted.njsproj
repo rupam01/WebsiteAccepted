@@ -71,6 +71,8 @@
     <Content Include="files\Lecture3_Media.zip" />
     <Content Include="files\Lecture4_Challenges.pdf" />
     <Content Include="files\Lecture4_LoopsTimers.pdf" />
+    <Content Include="files\Lecture5_Challenges.pdf" />
+    <Content Include="files\Lecture5_Functions.pdf" />
     <Content Include="files\Syllabus.pdf" />
     <Content Include="files\syllabus2.pdf" />
     <Content Include="halfQuery.txt" />
@@ -84,6 +86,7 @@
     <Content Include="public\images\Lecture2.png" />
     <Content Include="public\images\Lecture3.png" />
     <Content Include="public\images\Lecture4.png" />
+    <Content Include="public\images\Lecture5.png" />
     <Content Include="public\images\lecture_bgs.png" />
     <Content Include="public\images\logo.png" />
     <Content Include="public\images\logo_lz_stacked.png" />

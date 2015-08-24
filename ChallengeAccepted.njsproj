@@ -88,6 +88,7 @@
     <Content Include="public\images\Lecture3.png" />
     <Content Include="public\images\Lecture4.png" />
     <Content Include="public\images\Lecture5.png" />
+    <Content Include="public\images\Lecture6.png" />
     <Content Include="public\images\lecture_bgs.png" />
     <Content Include="public\images\logo.png" />
     <Content Include="public\images\logo_lz_stacked.png" />

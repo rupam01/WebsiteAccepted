@@ -75,7 +75,7 @@
     <Content Include="files\Lecture5_Functions.pdf" />
     <Content Include="files\Lecture5_Media.zip" />
     <Content Include="files\Lecture7_Challenges.pdf" />
-    <Content Include="files\Lecture7_Maps APIs.pdf" />
+    <Content Include="files\Lecture7_MapsAPIs.pdf" />
     <Content Include="files\Syllabus.pdf" />
     <Content Include="files\syllabus2.pdf" />
     <Content Include="halfQuery.txt" />
